@@ -46,6 +46,10 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="LinqKit.EntityFramework, Version=1.0.4.0, Culture=neutral, PublicKeyToken=b6c8cfc71f7a6a80, processorArchitecture=MSIL">
+      <HintPath>..\packages\LinqKit.EntityFramework.1.0.4.0\lib\net461\LinqKit.EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
       <Private>True</Private>
@@ -98,7 +102,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MyMenu.Api.Models\MyMenu.Api.Models.csproj">
-      <Project>{C7E67559-2F68-4493-B17E-C9BE6980367E}</Project>
+      <Project>{c7e67559-2f68-4493-b17e-c9be6980367e}</Project>
       <Name>MyMenu.Api.Models</Name>
     </ProjectReference>
   </ItemGroup>

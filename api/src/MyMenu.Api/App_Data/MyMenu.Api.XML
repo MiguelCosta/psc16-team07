@@ -489,15 +489,36 @@
             <param name="model">Informação do utilizador</param>
             <returns></returns>
         </member>
+        <member name="M:MyMenu.Api.Controllers.RestaurantsController.Get(System.Int32)">
+            <summary>
+            Get a restaurant
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:MyMenu.Api.Controllers.RestaurantsController.Get">
             <summary>
-            Obter todos os restaurants.
+            Get all restaurants
             </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MyMenu.Api.Controllers.RestaurantsController.Post(MyMenu.Api.Dtos.RestaurantDto)">
+            <summary>
+            Create a restaurant
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyMenu.Api.Controllers.RestaurantsController.Put(System.Int32,MyMenu.Api.Dtos.RestaurantDto)">
+            <summary>
+            Edit a restaurant
+            </summary>
+            <param name="id"></param>
+            <param name="dto"></param>
             <returns></returns>
         </member>
         <member name="M:MyMenu.Api.Controllers.RestaurantsController.Search(System.String)">
             <summary>
-            Pesquisar restaurantes
+            Search restaurants
             </summary>
             <param name="search"></param>
             <returns></returns>

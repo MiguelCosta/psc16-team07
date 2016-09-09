@@ -5,8 +5,14 @@ namespace MyMenu.Api.Models.Infrastructure
 {
     public interface IRestaurantRepsitory
     {
+        Task<RestaurantModel> CreateAsync(RestaurantModel restaurant);
+
+        Task<RestaurantModel> EditAsync(int id, RestaurantModel restaurant);
+
+        Task<RestaurantModel> FindAsync(int id);
+
         Task<IEnumerable<RestaurantModel>> GetAllAsync();
 
-        Task<IEnumerable<RestaurantModel>> Search(string search);
+        Task<IEnumerable<RestaurantModel>> SearchAsync(string search);
     }
 }

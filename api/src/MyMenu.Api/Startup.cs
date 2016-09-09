@@ -25,6 +25,7 @@ namespace MyMenu.Api
             ConfigureJson();
             ConfigureAuth(app);
 
+            Mapping.Map.Start();
             DataEf.Mapping.Map.Start();
         }
 

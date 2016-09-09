@@ -31,11 +31,11 @@ namespace MyMenu.Api.Models.Filters
             typesString.Add(Enums.RestaurantType.Italian.ToString(), Enums.RestaurantType.Italian);
             typesString.Add(Enums.RestaurantType.Mexican.ToString(), Enums.RestaurantType.Mexican);
             typesString.Add(Enums.RestaurantType.Portuguese.ToString(), Enums.RestaurantType.Portuguese);
-            typesString.Add(Enums.RestaurantType.SeeFood.ToString(), Enums.RestaurantType.SeeFood);
+            typesString.Add(Enums.RestaurantType.SeaFood.ToString(), Enums.RestaurantType.SeaFood);
             typesString.Add(Enums.RestaurantType.Traditional.ToString(), Enums.RestaurantType.Traditional);
 
             result = typesString
-                .Where(x => x.Key.Contains(search))
+                .Where(x => x.Key.ToLower().Contains(search.ToLower()))
                 .Select(x => x.Value)
                 .ToList();
 

@@ -7,7 +7,8 @@
         Italian = 2,
         Mexican = 3,
         Indian = 4,
-        SeeFood = 5,
-        Traditional = 6
+        SeaFood = 5,
+        Traditional = 6,
+        Japanese = 7
     }
 }
