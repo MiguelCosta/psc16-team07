@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace MyMenu.Api.Models.Infrastructure
 {
-    public interface IRestaurantRepsitory
+    public interface IRestaurantRepository
     {
         Task<RestaurantModel> CreateAsync(RestaurantModel restaurant);
 

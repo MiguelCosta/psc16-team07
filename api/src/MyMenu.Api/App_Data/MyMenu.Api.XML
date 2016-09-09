@@ -489,6 +489,18 @@
             <param name="model">Informação do utilizador</param>
             <returns></returns>
         </member>
+        <member name="M:MyMenu.Api.Controllers.DishesController.Get(System.Int32)">
+            <summary>
+            Get a dish
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MyMenu.Api.Controllers.DishesController.GetByRestaurant(System.Int32)">
+            <summary>
+            Get all dish of restaurant
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:MyMenu.Api.Controllers.RestaurantsController.Get(System.Int32)">
             <summary>
             Get a restaurant

@@ -11,11 +11,11 @@ using System.Threading.Tasks;
 
 namespace MyMenu.Api.DataEf.Infrastructure
 {
-    public class RestaurantRepsitoryEf : IRestaurantRepsitory
+    public class RestaurantRepositoryEf : IRestaurantRepository
     {
         private ApplicationDbContext _context;
 
-        public RestaurantRepsitoryEf(ApplicationDbContext context)
+        public RestaurantRepositoryEf(ApplicationDbContext context)
         {
             _context = context;
         }
@@ -34,7 +34,7 @@ namespace MyMenu.Api.DataEf.Infrastructure
             var rest = Mapper.Map<Restaurant>(restaurant);
             var currentRestaurant = await _context.Restaurants.FindAsync(id);
 
-            //_context.Entry(currentRestaurant).;
+            _context.Entry(currentRestaurant).CurrentValues.SetValues(rest);
 
             await _context.SaveChangesAsync();
             await _context.Entry(currentRestaurant).ReloadAsync();

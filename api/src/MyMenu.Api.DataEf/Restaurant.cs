@@ -1,15 +1,23 @@
 ﻿using MyMenu.Api.Models.Enums;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace MyMenu.Api.DataEf
 {
     public class Restaurant
     {
+        public Restaurant()
+        {
+            Dishes = new Collection<Dish>();
+        }
+
         [StringLength(256)]
         public string Address { get; set; }
 
         [StringLength(1024)]
         public string Description { get; set; }
+
 
         [StringLength(256)]
         public string Email { get; set; }
@@ -37,5 +45,7 @@ namespace MyMenu.Api.DataEf
 
         [StringLength(256)]
         public string Username { get; set; }
+
+        public virtual ICollection<Dish> Dishes { get; set; }
     }
 }

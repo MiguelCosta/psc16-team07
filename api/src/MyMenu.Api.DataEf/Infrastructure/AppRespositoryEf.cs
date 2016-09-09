@@ -1,4 +1,5 @@
-﻿using MyMenu.Api.Models.Infrastructure;
+﻿using System;
+using MyMenu.Api.Models.Infrastructure;
 
 namespace MyMenu.Api.DataEf.Infrastructure
 {
@@ -9,9 +10,12 @@ namespace MyMenu.Api.DataEf.Infrastructure
         public AppRespositoryEf()
         {
             _context = new ApplicationDbContext();
-            Restaurants = new RestaurantRepsitoryEf(_context);
+            Dishes = new DishRepositoryEf(_context);
+            Restaurants = new RestaurantRepositoryEf(_context);
         }
 
-        public IRestaurantRepsitory Restaurants { get; set; }
+        public IDishRepository Dishes { get; set; }
+
+        public IRestaurantRepository Restaurants { get; set; }
     }
 }

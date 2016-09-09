@@ -71,10 +71,13 @@
   <ItemGroup>
     <Compile Include="ApplicationDbContext.cs" />
     <Compile Include="ApplicationUser.cs" />
+    <Compile Include="Dish.cs" />
     <Compile Include="EntityConfiguration\RestaurantConfiguration.cs" />
     <Compile Include="Infrastructure\AppRespositoryEf.cs" />
-    <Compile Include="Infrastructure\RestaurantRepsitoryEf.cs" />
+    <Compile Include="Infrastructure\DishRepositoryEf.cs" />
+    <Compile Include="Infrastructure\RestaurantRepositoryEf.cs" />
     <Compile Include="Mapping\Map.cs" />
+    <Compile Include="Mapping\DishMapping.cs" />
     <Compile Include="Mapping\RestaurantMapping.cs" />
     <Compile Include="Migrations\201608302357428_Init.cs" />
     <Compile Include="Migrations\201608302357428_Init.Designer.cs">
@@ -83,6 +86,10 @@
     <Compile Include="Migrations\201609022120220_AddRestaurant.cs" />
     <Compile Include="Migrations\201609022120220_AddRestaurant.Designer.cs">
       <DependentUpon>201609022120220_AddRestaurant.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609091747087_AddDish.cs" />
+    <Compile Include="Migrations\201609091747087_AddDish.Designer.cs">
+      <DependentUpon>201609091747087_AddDish.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -98,6 +105,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201609022120220_AddRestaurant.resx">
       <DependentUpon>201609022120220_AddRestaurant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609091747087_AddDish.resx">
+      <DependentUpon>201609091747087_AddDish.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

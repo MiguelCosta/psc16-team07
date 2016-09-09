@@ -11,6 +11,11 @@ namespace MyMenu.Api.DataEf.EntityConfiguration
 
             Property(p => p.Longitude)
                 .HasPrecision(11, 6);
+
+            HasMany(r => r.Dishes)
+                .WithRequired(d => d.Restaurant)
+                .HasForeignKey(d => d.RestaurantId);
+
         }
     }
 }

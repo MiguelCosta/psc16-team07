@@ -2,6 +2,8 @@
 {
     public interface IAppRespository
     {
-        IRestaurantRepsitory Restaurants { get; set; }
+        IDishRepository Dishes { get; set; }
+
+        IRestaurantRepository Restaurants { get; set; }
     }
 }

@@ -9,6 +9,7 @@ namespace MyMenu.Api.DataEf.Mapping
             Mapper.Initialize(cfg =>
             {
                 cfg.AddProfile<RestaurantMapping>();
+                cfg.AddProfile<DishMapping>();
             });
         }
     }
