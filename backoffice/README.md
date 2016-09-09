@@ -1,3 +1,3 @@
 # mymenu
 
-MyMenu Backoffice angular
+MyMenu Backoffice angularjs
