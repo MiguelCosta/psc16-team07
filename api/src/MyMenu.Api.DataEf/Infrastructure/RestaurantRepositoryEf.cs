@@ -62,7 +62,7 @@ namespace MyMenu.Api.DataEf.Infrastructure
 
             if(string.IsNullOrWhiteSpace(filter.DishName) == false)
             {
-                // todo: impletmentar DishModel
+                predicate = predicate.Or(r => r.Dishes.Any(d => d.Name.Contains(filter.DishName)));
             }
 
             if(filter.RestaurantType.Any())

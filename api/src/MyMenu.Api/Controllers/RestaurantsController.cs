@@ -47,7 +47,7 @@ namespace MyMenu.Api.Controllers
         /// <returns></returns>
         [Authorize]
         [ResponseType(typeof(RestaurantModel))]
-        public async Task<IHttpActionResult> Post(RestaurantDto dto)
+        public async Task<IHttpActionResult> Post([FromBody] RestaurantDto dto)
         {
             if(ModelState.IsValid == false)
             {
@@ -82,7 +82,7 @@ namespace MyMenu.Api.Controllers
         /// <returns></returns>
         [Authorize]
         [ResponseType(typeof(RestaurantModel))]
-        public async Task<IHttpActionResult> Put(int id, RestaurantDto dto)
+        public async Task<IHttpActionResult> Put(int id, [FromBody] RestaurantDto dto)
         {
             if(ModelState.IsValid == false)
             {
@@ -93,11 +93,12 @@ namespace MyMenu.Api.Controllers
 
             if(currentRestaurant.Username != User.Identity.Name)
             {
-                return Content(HttpStatusCode.Forbidden, dto);
+                return Content(HttpStatusCode.Forbidden, "This restaurant isn't yours");
             }
 
             var restaurant = new RestaurantModel
             {
+                Id = currentRestaurant.Id,
                 Address = dto.Address,
                 Description = dto.Description,
                 Email = dto.Email,
@@ -113,7 +114,7 @@ namespace MyMenu.Api.Controllers
 
             var newRestaurant = await _repo.Restaurants.EditAsync(id, restaurant);
 
-            return Created($"api/restaurants/{newRestaurant.Id}", newRestaurant);
+            return Ok(newRestaurant);
         }
 
         /// <summary>

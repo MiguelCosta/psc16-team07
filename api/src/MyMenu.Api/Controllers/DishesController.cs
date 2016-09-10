@@ -1,6 +1,9 @@
-﻿using MyMenu.Api.Models;
+﻿using AutoMapper;
+using MyMenu.Api.Dtos;
+using MyMenu.Api.Models;
 using MyMenu.Api.Models.Infrastructure;
 using System.Collections.Generic;
+using System.Net;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
@@ -46,6 +49,62 @@ namespace MyMenu.Api.Controllers
 
             var dishes = await _repo.Dishes.GetAllAsync(id);
             return Ok(dishes);
+        }
+
+        /// <summary>
+        /// Create a dish
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <returns></returns>
+        [Authorize]
+        [ResponseType(typeof(DishModel))]
+        public async Task<IHttpActionResult> Post([FromBody] DishDto dto)
+        {
+            if(ModelState.IsValid == false)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var dish = Mapper.Map<DishModel>(dto);
+
+            var newDish= await _repo.Dishes.CreateAsync(dish);
+
+            return Created($"api/dishes/{newDish.Id}", newDish);
+        }
+
+        /// <summary>
+        /// Edit a dish
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="dto"></param>
+        /// <returns></returns>
+        [Authorize]
+        [ResponseType(typeof(DishModel))]
+        public async Task<IHttpActionResult> Put(int id, [FromBody] DishDto dto)
+        {
+            if(ModelState.IsValid == false)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var currentDish = await _repo.Dishes.FindAsync(id);
+            if(currentDish.RestaurantId != dto.RestaurantId)
+            {
+                return Content(HttpStatusCode.BadRequest, "Restaurant can't be different");
+            }
+
+            var restaurant = await _repo.Restaurants.FindAsync(currentDish.RestaurantId);
+            if(restaurant.Username != User.Identity.Name)
+            {
+                return Content(HttpStatusCode.Forbidden, "This restaurant isn't yours");
+            }
+
+            var dish = Mapper.Map<DishModel>(dto);
+            dish.Id = currentDish.Id;
+
+            var newDish = await _repo.Dishes.EditAsync(id, dish);
+
+            return Ok(newDish);
         }
     }
 }

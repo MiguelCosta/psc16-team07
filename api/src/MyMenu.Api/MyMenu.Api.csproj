@@ -280,14 +280,18 @@
     <Compile Include="Controllers\DishesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RestaurantsController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\TypesController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Dtos\DishDto.cs" />
     <Compile Include="Dtos\RestaurantDto.cs" />
+    <Compile Include="Dtos\SearchResultDto.cs" />
     <Compile Include="Dtos\TypeDto.cs" />
     <Compile Include="ErrorHandler\AiHandleErrorAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Mapping\DishMapping.cs" />
     <Compile Include="Mapping\Map.cs" />
     <Compile Include="Mapping\RestaurantMapping.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />

@@ -9,6 +9,7 @@ namespace MyMenu.Api.Mapping
             Mapper.Initialize(cfg =>
             {
                 cfg.AddProfile<RestaurantMapping>();
+                cfg.AddProfile<DishMapping>();
             });
             Mapper.AssertConfigurationIsValid();
         }

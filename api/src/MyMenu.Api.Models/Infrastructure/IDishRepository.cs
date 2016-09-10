@@ -13,6 +13,6 @@ namespace MyMenu.Api.Models.Infrastructure
 
         Task<IEnumerable<DishModel>> GetAllAsync(int restaurantId);
 
-        Task<IEnumerable<DishModel>> SearchAsync(string search);
+        Task<IEnumerable<DishModel>> GetAllAsync(IEnumerable<int> restaurantsId);
     }
 }
