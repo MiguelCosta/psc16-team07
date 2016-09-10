@@ -4,5 +4,11 @@
         <name>MyMenu.Api.DataEf</name>
     </assembly>
     <members>
+        <member name="M:MyMenu.Api.DataEf.Migrations.Configuration.AllDishesContent">
+            <summary>
+            TODO: colocar num ficheiro
+            </summary>
+            <returns></returns>
+        </member>
     </members>
 </doc>
