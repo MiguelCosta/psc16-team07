@@ -242,7 +242,7 @@ namespace MyMenu.Api.DataEf.Migrations
         /// <returns></returns>
         private static string AllDishesContent()
         {
-            string allDishes = @"1;Grilled Salmon   with lentil salad;Premium Copper River King Salmon grilled with salt and pepper and served with a green lentil and grilled vegetable salad.
+            string allDishes = @"1;Grilled Salmon with lentil salad;Premium Copper River King Salmon grilled with salt and pepper and served with a green lentil and grilled vegetable salad. Great fish.
 2;Grilled Salmon Kebabs in an orange and herb marinade;Fresh chunks of salmon marinaded in thyme, lime, lemon and orange juice and then grilled on wooden skewers. These are great summer eats with a cold beer or glass of crisp Sauvignon Blanc.
 3;Marsala Risotto with Herbed Shrimp;Marsala Risotto with Herbed Shrimp has a creamy texture of the risotto and all the flavor the herbs gave the shrimp. This lightened up Italian dish is healthy and delicious!
 4;Garlic Shrimp Tortellini;This dish as some olive oil, garlic, shrimp, dashes of white wine, salt and pepper are all you need. To jazz up the taste and presentation, I added sun-dried tomato. 
@@ -284,7 +284,7 @@ namespace MyMenu.Api.DataEf.Migrations
 40;Cheesy Ravioli Lasagna;This is lasagna made with cheese-stuffed ravioli. Commence freak out.
 41;Neapolitan Pizza;This Neapolitan pizza crust is thin, crispy and has the most amazing flavor. My homemade pizza-making is forever changed!
 42;Italian Sausage grilled Flatbread Pizza;If you love hot Italian sausage, you just may enjoy our bacon honey bourbon chicken meatballs! The ground chicken is flavored with hot Italian sausage and is totally addicting, I bet you can?t eat just one!
-43;Jalape¤o Popper Pizza;Jalape¤o Popper Pizza - All the flavors of a jalape¤o popper is so much better in cheesy pizza form!
+43;Jalapeo Popper Pizza;Jalapeo Popper Pizza - All the flavors of a jalape¤o popper is so much better in cheesy pizza form!
 44;Shrimp Scampi Pizza;Shrimp Scampi Pizza topped with a light garlic-lemon sauce, shrimp, and cheeses.
 45;Three Cheese Pesto Spinach Flatbread Pizza;Aiming to eat more veggies? This Three Cheese Pesto Spinach Flatbread Pizza packs an entire box of spinach into one glorious single-serving?
 46;Four Cheese Pizza;This is the perfect dish when you?re craving pizza.
@@ -303,11 +303,11 @@ namespace MyMenu.Api.DataEf.Migrations
 59;Gyudon (Japanese Beef & Rice Bowls);This gyudon recipe (or beef donburi recipe) features seasoned, pan-fried beef strips on a bed of Japanese rice.
 60;Japanese Kabocha Curry ;This vegan Japanese curry is a more traditional take on our popular Japanese Kabocha Curry recipe. We?ve substituted potatoes for the slightly seasonal kabocha squash, making this a more accessible and year-round vegan Japanese curry.
 61;Soba Noodle Soup;This Japanese recipe for soba noodle soup features soba (buckwheat) noodles in a hot dashi broth with fish and vegetable toppings.
-62;Veggie Sushi & 3 Different Ways ;A simple vegan sushi you will love it.
+62;Veggie Sushi & 3 Different Ways ;A simple vegetarian sushi you will love it.
 63;Dragon Roll;Crunchy shrimp tempura and ttobiko wrapped in nori and rice covered with a layer of sliced avocado.
 64;Sushi Burrito;Sushiritto is an inflated sushi roll with Asian & Latin flavors & some organic ingredients.
 65;Spicy Honey Garlic Chicken;
-66;Oriental Crispy Mushrooms;Oriental crispy mushroom is an Indo Chinese recipe where mushroom are coated in a batter and fried till crisp and then tossed in a spicy
+66;Oriental Crispy Mushrooms;Paleo Oriental crispy mushroom is an Indo Chinese recipe where mushroom are coated in a batter and fried till crisp and then tossed in a spicy
 67;Copycat Applebee's Oriental Salad;Sweet and spicy jalape¤o honey garlic chicken recipe. Grilled or pan-fried, this chicken is sure to be a hit!
 68;Sesame Kale Noodles;Sesame Kale Noodles - your next last-minute meal. Kale, brussels sprouts, sesame, and noodles equals weeknight, vegan happiness.?
 69;Mongolian Beef Noodle Bowls;Gluten-Free Mongolian Beef Noodle Bowls taste just like take out, swapping rice for chewy rice noodles. 

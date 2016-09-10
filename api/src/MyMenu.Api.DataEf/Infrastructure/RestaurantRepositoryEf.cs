@@ -136,10 +136,10 @@ namespace MyMenu.Api.DataEf.Infrastructure
             {
                 foreach(var word in filter.Keywords)
                 {
-                    predicateKeywords = predicateKeywords.Or(r => r.Name.Contains(word));
-                    predicateKeywords = predicateKeywords.Or(r => r.Description.Contains(word));
-                    predicateKeywords = predicateKeywords.Or(r => r.Dishes.Any(d => d.Name.Contains(word)));
-                    predicateKeywords = predicateKeywords.Or(r => r.Dishes.Any(d => d.Description.Contains(word)));
+                    predicateKeywords = predicateKeywords.Or(r => r.Name.ToLower().Contains(word.ToLower()));
+                    predicateKeywords = predicateKeywords.Or(r => r.Description.ToLower().Contains(word.ToLower()));
+                    predicateKeywords = predicateKeywords.Or(r => r.Dishes.Any(d => d.Name.ToLower().Contains(word.ToLower())));
+                    predicateKeywords = predicateKeywords.Or(r => r.Dishes.Any(d => d.Description.ToLower().Contains(word.ToLower())));
                 }
             }
 

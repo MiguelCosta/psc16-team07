@@ -6,6 +6,9 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
+using MyMenu.Api.Models.Filters;
+using System;
+using LinqKit;
 
 namespace MyMenu.Api.DataEf.Infrastructure
 {
@@ -61,6 +64,38 @@ namespace MyMenu.Api.DataEf.Infrastructure
                 .Where(d => d.RestaurantId == restaurantId)
                 .ProjectTo<DishModel>()
                 .ToListAsync();
+        }
+
+        public async Task<IEnumerable<DishModel>> GetSearchRefineAsync(IEnumerable<int> restaurantsId, RestaurantFilter filter)
+        {
+            var predicateKeywords = PredicateBuilder.New<Dish>(false);
+            if(filter.Keywords.Any())
+            {
+                foreach(var word in filter.Keywords)
+                {
+                    predicateKeywords = predicateKeywords.Or(d => d.Name.ToLower().Contains(word.ToLower()));
+                    predicateKeywords = predicateKeywords.Or(d => d.Name.ToLower().Contains(word.ToLower()));
+                }
+            }
+
+            var predicateRestaurants = PredicateBuilder.New<Dish>(true);
+            predicateRestaurants = predicateRestaurants.Or(d => restaurantsId.Contains(d.RestaurantId));
+
+            var predicatePrice = PredicateBuilder.New<Dish>(true);
+            if(filter.MaxPrice.HasValue)
+            {
+                predicatePrice = predicatePrice.Or(d => d.Price <= filter.MaxPrice.Value);
+            }
+
+            var predicates = predicateKeywords.And(predicateRestaurants).And(predicatePrice);
+
+            var results = await _context.Dishes
+                .AsExpandable()
+                .AsNoTracking()
+                .Where(predicates)
+                .ToListAsync();
+
+            return Mapper.Map<IEnumerable<DishModel>>(results);
         }
     }
 }

@@ -562,17 +562,6 @@
             Search actions
             </summary>
         </member>
-        <member name="M:MyMenu.Api.Controllers.SearchController.Get(System.String)">
-            <summary>
-            Search restaurants and dishes.
-            HeadersRequest:
-            x-latitude: current latitude of user (decimal);
-            x-longitude: current longitude of user (decimal);
-            x-range: range of search (km);
-            </summary>
-            <param name="query"></param>
-            <returns></returns>
-        </member>
         <member name="M:MyMenu.Api.Controllers.SearchController.Filter(MyMenu.Api.Dtos.SearchFilterDto)">
             <summary>
             Search restaurants and dishes.
@@ -582,6 +571,17 @@
             x-range: range of search (km);
             </summary>
             <param name="filter"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyMenu.Api.Controllers.SearchController.Get(System.String)">
+            <summary>
+            Search restaurants and dishes.
+            HeadersRequest:
+            x-latitude: current latitude of user (decimal);
+            x-longitude: current longitude of user (decimal);
+            x-range: range of search (km);
+            </summary>
+            <param name="query"></param>
             <returns></returns>
         </member>
         <member name="M:MyMenu.Api.Controllers.TypesController.Get">
