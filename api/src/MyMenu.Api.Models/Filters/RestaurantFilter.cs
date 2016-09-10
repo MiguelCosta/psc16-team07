@@ -29,6 +29,7 @@ namespace MyMenu.Api.Models.Filters
             var typesString = new Dictionary<string, Enums.RestaurantType>();
             typesString.Add(Enums.RestaurantType.Indian.ToString(), Enums.RestaurantType.Indian);
             typesString.Add(Enums.RestaurantType.Italian.ToString(), Enums.RestaurantType.Italian);
+            typesString.Add(Enums.RestaurantType.Japanese.ToString(), Enums.RestaurantType.Japanese);
             typesString.Add(Enums.RestaurantType.Mexican.ToString(), Enums.RestaurantType.Mexican);
             typesString.Add(Enums.RestaurantType.Portuguese.ToString(), Enums.RestaurantType.Portuguese);
             typesString.Add(Enums.RestaurantType.SeaFood.ToString(), Enums.RestaurantType.SeaFood);

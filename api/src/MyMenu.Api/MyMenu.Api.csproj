@@ -272,8 +272,10 @@
     <Compile Include="Controllers\DishesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RestaurantsController.cs" />
+    <Compile Include="Controllers\TypesController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Dtos\RestaurantDto.cs" />
+    <Compile Include="Dtos\TypeDto.cs" />
     <Compile Include="ErrorHandler\AiHandleErrorAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

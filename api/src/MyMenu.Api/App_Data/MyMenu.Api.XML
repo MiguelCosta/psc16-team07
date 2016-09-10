@@ -535,5 +535,11 @@
             <param name="search"></param>
             <returns></returns>
         </member>
+        <member name="M:MyMenu.Api.Controllers.TypesController.Get">
+            <summary>
+            All restaurants types
+            </summary>
+            <returns></returns>
+        </member>
     </members>
 </doc>
