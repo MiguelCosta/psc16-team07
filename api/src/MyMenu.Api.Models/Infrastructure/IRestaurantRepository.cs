@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using MyMenu.Api.Models.Filters;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace MyMenu.Api.Models.Infrastructure
@@ -13,6 +14,6 @@ namespace MyMenu.Api.Models.Infrastructure
 
         Task<IEnumerable<RestaurantModel>> GetAllAsync();
 
-        Task<IEnumerable<RestaurantModel>> SearchAsync(string search);
+        Task<IEnumerable<RestaurantModel>> SearchAsync(RestaurantFilter search);
     }
 }

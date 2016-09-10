@@ -54,11 +54,9 @@ namespace MyMenu.Api.DataEf.Infrastructure
             return await _context.Restaurants.ProjectTo<RestaurantModel>().ToListAsync();
         }
 
-        public async Task<IEnumerable<RestaurantModel>> SearchAsync(string search)
+        public async Task<IEnumerable<RestaurantModel>> SearchAsync(Models.Filters.RestaurantFilter filter)
         {
-            var filter = new Models.Filters.RestaurantFilter(search);
-
-            var predicate = PredicateBuilder.New<Restaurant>(false);
+            var predicate = PredicateBuilder.New<Restaurant>(true);
 
             if(string.IsNullOrWhiteSpace(filter.DishName) == false)
             {
@@ -75,11 +73,44 @@ namespace MyMenu.Api.DataEf.Infrastructure
                 predicate = predicate.Or(r => r.Name.Contains(filter.RestaurantName));
             }
 
+            //if(filter.Latitude > 0 && filter.Longitude > 0 && filter.Range > 0)
+            //{
+            //    // http://stackoverflow.com/questions/2234204/latitude-longitude-find-nearest-latitude-longitude-complex-sql-or-complex-calc
+            //    //SELECT latitude, longitude, SQRT(
+            //    //    POW(69.1 * (latitude - [startlat]), 2) +
+            //    //    POW(69.1 * ([startlng] - longitude) 
+            //    //       * COS(latitude / 57.3), 2)
+            //    // ) AS distance
+            //    //FROM TableName HAVING distance < 25 ORDER BY distance;
+
+            //    predicate = predicate.Or(
+            //        r =>
+            //        Math.Sqrt(
+            //            Math.Pow(69.1 * (Convert.ToDouble(r.Latitude) - Convert.ToDouble(filter.Latitude)), 2) +
+            //            Math.Pow(69.1 * (Convert.ToDouble(filter.Longitude) - Convert.ToDouble(r.Longitude))
+            //                * Math.Cos(Convert.ToDouble(r.Latitude) / 57.3), 2)
+            //        ) <= filter.Range
+            //    );
+            //}
+
             var results = await _context.Restaurants
                 .AsExpandable()
                 .AsNoTracking()
                 .Where(predicate)
                 .ToListAsync();
+
+            // TODO: tentar colocar diretamente na query
+            if(filter.Latitude != 0 && filter.Longitude != 0 && filter.Range > 0)
+            {
+                results = results.Where(r =>
+                    Math.Sqrt(
+                                Math.Pow(69.1 * (Convert.ToDouble(r.Latitude) - Convert.ToDouble(filter.Latitude)), 2) +
+                                Math.Pow(69.1 * (Convert.ToDouble(filter.Longitude) - Convert.ToDouble(r.Longitude))
+                                    * Math.Cos(Convert.ToDouble(r.Latitude) / 57.3), 2)
+                            ) <= filter.Range
+                    )
+                .ToList();
+            }
 
             return Mapper.Map<IEnumerable<RestaurantModel>>(results);
         }

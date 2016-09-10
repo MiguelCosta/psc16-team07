@@ -550,6 +550,22 @@
             <param name="search"></param>
             <returns></returns>
         </member>
+        <member name="T:MyMenu.Api.Controllers.SearchController">
+            <summary>
+            Search actions
+            </summary>
+        </member>
+        <member name="M:MyMenu.Api.Controllers.SearchController.Get(System.String)">
+            <summary>
+            Search restaurants and dishes.
+            HeadersRequest:
+            x-latitude: current latitude of user (decimal);
+            x-longitude: current longitude of user (decimal);
+            x-range: range of search (km);
+            </summary>
+            <param name="query"></param>
+            <returns></returns>
+        </member>
         <member name="M:MyMenu.Api.Controllers.TypesController.Get">
             <summary>
             All restaurants types

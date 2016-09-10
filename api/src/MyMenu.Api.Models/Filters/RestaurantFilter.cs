@@ -15,15 +15,26 @@ namespace MyMenu.Api.Models.Filters
 
         public string DishName { get; set; } = string.Empty;
 
+        public decimal Latitude { get; set; } = 0;
+
+        public decimal Longitude { get; set; } = 0;
+
+        public int Range { get; set; } = 1;
+
         public string RestaurantName { get; set; } = string.Empty;
 
-        public string Search { get; set; }
-
         public List<Enums.RestaurantType> RestaurantType { get; set; } = new List<Enums.RestaurantType>();
+
+        public string Search { get; set; }
 
         private static List<Enums.RestaurantType> GetRestaurantType(string search)
         {
             var result = new List<Enums.RestaurantType>();
+
+            if(string.IsNullOrWhiteSpace(search))
+            {
+                return result;
+            }
 
             // todo: criar método genérico para fazer isto
             var typesString = new Dictionary<string, Enums.RestaurantType>();

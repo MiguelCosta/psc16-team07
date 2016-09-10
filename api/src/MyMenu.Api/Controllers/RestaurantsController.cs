@@ -131,7 +131,7 @@ namespace MyMenu.Api.Controllers
                 return BadRequest();
             }
 
-            var result = await _repo.Restaurants.SearchAsync(search);
+            var result = await _repo.Restaurants.SearchAsync(new Models.Filters.RestaurantFilter(search));
 
             return Ok(result);
         }
