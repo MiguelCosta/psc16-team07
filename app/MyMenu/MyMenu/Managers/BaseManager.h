@@ -29,6 +29,8 @@ typedef void(^failureBlock)(NSError * error);
 
 - (void)deleteDataFromEndpoint:(NSString *)endpoint successBlock:(successBlock)successBlock andFailureBlock:(failureBlock)failureBock;
 
+- (void)addHeadersWithLatitude:(NSString *)latitude longitude:(NSString *)longitude andRange:(NSString *)range;
+
 - (NSMutableArray *)parseObjectsForClassRepresentation:(Class)classalloced withJsonObjects:(NSArray *)jsonObjects;
 
 - (NSMutableArray *)responseArrayFromJSONObject:(NSArray *)jsonObject objectsWithClass:(Class ) classalloced;

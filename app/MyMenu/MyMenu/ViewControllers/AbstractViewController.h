@@ -11,6 +11,8 @@
 @interface AbstractViewController : UIViewController
 
 
+- (void)navigationBarRightButtonWithImage:(UIImage *)image selectedImage:(UIImage *)selectedImage action:(SEL)action andTarget:(id)target;
+
 - (void)alertViewWithTitle:(NSString *)title cancelButtonTitle:(NSString *)cancelButtonTitle message:(NSString *)message andOtherButtonTitle:(NSString *)otherButtonTitle;
 
 - (void)presentWaitingView;

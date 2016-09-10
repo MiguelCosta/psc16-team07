@@ -23,5 +23,6 @@
 @property (nonatomic, strong) NSString      * address;
 @property (nonatomic, strong) NSNumber      * latitude;
 @property (nonatomic, strong) NSNumber      * longitude;
+@property (nonatomic, strong) NSString      * type;
 
 @end

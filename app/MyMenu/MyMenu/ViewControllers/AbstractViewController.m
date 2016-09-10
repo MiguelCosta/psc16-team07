@@ -57,7 +57,7 @@
     UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button setImage:buttonImage forState:UIControlStateNormal];
     
-    button.frame = CGRectMake(0, 0, buttonImage.size.width+44, 44);
+    button.frame = CGRectMake(0, 0, buttonImage.size.width + 44, 44);
     [button addTarget:self action:@selector(popView) forControlEvents:UIControlEventTouchUpInside];
     
     [button setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
@@ -65,6 +65,20 @@
     UIBarButtonItem *customBarItem = [[UIBarButtonItem alloc] initWithCustomView:button];
     
     self.navigationItem.leftBarButtonItem = customBarItem;
+}
+
+- (void)navigationBarRightButtonWithImage:(UIImage *)image selectedImage:(UIImage *)selectedImage action:(SEL)action andTarget:(id)target {
+    
+    UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button setImage:image forState:UIControlStateNormal];
+    [button setImage:selectedImage forState:UIControlStateSelected];
+    button.frame = CGRectMake(0, 0, 25, 25);
+    [button addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
+    
+    [button setContentHorizontalAlignment:UIControlContentHorizontalAlignmentRight];
+    UIBarButtonItem *customBarItem = [[UIBarButtonItem alloc] initWithCustomView:button];
+    
+    self.navigationItem.rightBarButtonItem = customBarItem;
 }
 
 #pragma mark - WaitingView

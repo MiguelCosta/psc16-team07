@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		51144442E3C2EAC9FC95D547 /* Pods_MyMenu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A58745DFCFA5DA25493E8BEE /* Pods_MyMenu.framework */; };
+		940806381D83730600A20996 /* DishHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 940806371D83730600A20996 /* DishHeaderView.xib */; };
+		9408063B1D83733400A20996 /* DishHeaderCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9408063A1D83733400A20996 /* DishHeaderCollectionReusableView.m */; };
+		9408063D1D8413D700A20996 /* RefineView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9408063C1D8413D700A20996 /* RefineView.xib */; };
+		940806401D845E1100A20996 /* RefineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9408063F1D845E1100A20996 /* RefineViewController.m */; };
 		942BA5F31D7D94CE00C03A4A /* AbstractViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 942BA5F21D7D94CE00C03A4A /* AbstractViewController.m */; };
 		942BA5F61D7D94DF00C03A4A /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 942BA5F51D7D94DF00C03A4A /* MapViewController.m */; };
 		942BA5F81D7D94EC00C03A4A /* MapView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 942BA5F71D7D94EC00C03A4A /* MapView.xib */; };
@@ -22,6 +26,8 @@
 		942BA6131D7F258D00C03A4A /* HTTPConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 942BA6121D7F258D00C03A4A /* HTTPConstants.m */; };
 		942BA6161D7F263800C03A4A /* WishlistCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 942BA6151D7F263800C03A4A /* WishlistCacheManager.m */; };
 		944513561D82EC07006C5958 /* SearchManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 944513551D82EC07006C5958 /* SearchManager.m */; };
+		9468DCE71D84C15B00573BB5 /* MapDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9468DCE61D84C15B00573BB5 /* MapDetailView.xib */; };
+		9468DCEA1D84C23200573BB5 /* MapDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9468DCE91D84C23200573BB5 /* MapDetailViewController.m */; };
 		947AB4091D83316400DFD0E4 /* AnimationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 947AB4081D83316400DFD0E4 /* AnimationHelper.m */; };
 		9488F1CF1D830C7C00B03EE7 /* WaitingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9488F1CE1D830C7C00B03EE7 /* WaitingView.xib */; };
 		9488F1D21D830CB800B03EE7 /* WaitingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9488F1D11D830CB800B03EE7 /* WaitingView.m */; };
@@ -43,8 +49,6 @@
 		94E970401D80193C0054ACF6 /* RestaurantDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94E9703F1D80193C0054ACF6 /* RestaurantDetailView.xib */; };
 		94E970421D805B900054ACF6 /* RestaurantHeaderReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94E970411D805B900054ACF6 /* RestaurantHeaderReusableView.xib */; };
 		94E970441D81660D0054ACF6 /* DishCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94E970431D81660D0054ACF6 /* DishCellView.xib */; };
-		94E970461D8166990054ACF6 /* RestaurantFooterReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94E970451D8166990054ACF6 /* RestaurantFooterReusableView.xib */; };
-		94E970491D8167A30054ACF6 /* RestaurantFooterCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94E970481D8167A30054ACF6 /* RestaurantFooterCollectionReusableView.m */; };
 		94E9704C1D8167D20054ACF6 /* DishCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 94E9704B1D8167D20054ACF6 /* DishCollectionViewCell.m */; };
 		94E9704F1D8168560054ACF6 /* RestaurantHeaderCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94E9704E1D8168560054ACF6 /* RestaurantHeaderCollectionReusableView.m */; };
 		94E970511D82C4B20054ACF6 /* KeywordCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94E970501D82C4B20054ACF6 /* KeywordCellView.xib */; };
@@ -55,6 +59,12 @@
 
 /* Begin PBXFileReference section */
 		370A28A60986A340A2CC7BC9 /* Pods-MyMenu.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyMenu.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyMenu/Pods-MyMenu.release.xcconfig"; sourceTree = "<group>"; };
+		940806371D83730600A20996 /* DishHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DishHeaderView.xib; sourceTree = "<group>"; };
+		940806391D83733400A20996 /* DishHeaderCollectionReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DishHeaderCollectionReusableView.h; sourceTree = "<group>"; };
+		9408063A1D83733400A20996 /* DishHeaderCollectionReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DishHeaderCollectionReusableView.m; sourceTree = "<group>"; };
+		9408063C1D8413D700A20996 /* RefineView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RefineView.xib; sourceTree = "<group>"; };
+		9408063E1D845E1100A20996 /* RefineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefineViewController.h; sourceTree = "<group>"; };
+		9408063F1D845E1100A20996 /* RefineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RefineViewController.m; sourceTree = "<group>"; };
 		942BA5F11D7D94CE00C03A4A /* AbstractViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractViewController.h; sourceTree = "<group>"; };
 		942BA5F21D7D94CE00C03A4A /* AbstractViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractViewController.m; sourceTree = "<group>"; };
 		942BA5F41D7D94DF00C03A4A /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
@@ -80,6 +90,9 @@
 		942BA6151D7F263800C03A4A /* WishlistCacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WishlistCacheManager.m; sourceTree = "<group>"; };
 		944513541D82EC07006C5958 /* SearchManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchManager.h; sourceTree = "<group>"; };
 		944513551D82EC07006C5958 /* SearchManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchManager.m; sourceTree = "<group>"; };
+		9468DCE61D84C15B00573BB5 /* MapDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapDetailView.xib; sourceTree = "<group>"; };
+		9468DCE81D84C23200573BB5 /* MapDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapDetailViewController.h; sourceTree = "<group>"; };
+		9468DCE91D84C23200573BB5 /* MapDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapDetailViewController.m; sourceTree = "<group>"; };
 		947AB4071D83316400DFD0E4 /* AnimationHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationHelper.h; sourceTree = "<group>"; };
 		947AB4081D83316400DFD0E4 /* AnimationHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnimationHelper.m; sourceTree = "<group>"; };
 		9488F1CE1D830C7C00B03EE7 /* WaitingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WaitingView.xib; sourceTree = "<group>"; };
@@ -115,9 +128,6 @@
 		94E9703F1D80193C0054ACF6 /* RestaurantDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RestaurantDetailView.xib; sourceTree = "<group>"; };
 		94E970411D805B900054ACF6 /* RestaurantHeaderReusableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RestaurantHeaderReusableView.xib; sourceTree = "<group>"; };
 		94E970431D81660D0054ACF6 /* DishCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DishCellView.xib; sourceTree = "<group>"; };
-		94E970451D8166990054ACF6 /* RestaurantFooterReusableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RestaurantFooterReusableView.xib; sourceTree = "<group>"; };
-		94E970471D8167A30054ACF6 /* RestaurantFooterCollectionReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantFooterCollectionReusableView.h; sourceTree = "<group>"; };
-		94E970481D8167A30054ACF6 /* RestaurantFooterCollectionReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantFooterCollectionReusableView.m; sourceTree = "<group>"; };
 		94E9704A1D8167D20054ACF6 /* DishCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DishCollectionViewCell.h; sourceTree = "<group>"; };
 		94E9704B1D8167D20054ACF6 /* DishCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DishCollectionViewCell.m; sourceTree = "<group>"; };
 		94E9704D1D8168560054ACF6 /* RestaurantHeaderCollectionReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantHeaderCollectionReusableView.h; sourceTree = "<group>"; };
@@ -202,10 +212,12 @@
 				94E9703F1D80193C0054ACF6 /* RestaurantDetailView.xib */,
 				94E970411D805B900054ACF6 /* RestaurantHeaderReusableView.xib */,
 				94E970431D81660D0054ACF6 /* DishCellView.xib */,
-				94E970451D8166990054ACF6 /* RestaurantFooterReusableView.xib */,
 				94E970501D82C4B20054ACF6 /* KeywordCellView.xib */,
 				94E970581D82D20C0054ACF6 /* ResultsView.xib */,
 				9488F1CE1D830C7C00B03EE7 /* WaitingView.xib */,
+				940806371D83730600A20996 /* DishHeaderView.xib */,
+				9408063C1D8413D700A20996 /* RefineView.xib */,
+				9468DCE61D84C15B00573BB5 /* MapDetailView.xib */,
 			);
 			path = Interfaces;
 			sourceTree = "<group>";
@@ -271,6 +283,10 @@
 				94E9703D1D80185C0054ACF6 /* RestaurantDetailViewController.m */,
 				94E970551D82D1F60054ACF6 /* ResultsViewController.h */,
 				94E970561D82D1F60054ACF6 /* ResultsViewController.m */,
+				9408063E1D845E1100A20996 /* RefineViewController.h */,
+				9408063F1D845E1100A20996 /* RefineViewController.m */,
+				9468DCE81D84C23200573BB5 /* MapDetailViewController.h */,
+				9468DCE91D84C23200573BB5 /* MapDetailViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -280,8 +296,6 @@
 			children = (
 				94E970361D8014060054ACF6 /* RestaurantCollectionViewCell.h */,
 				94E970371D8014060054ACF6 /* RestaurantCollectionViewCell.m */,
-				94E970471D8167A30054ACF6 /* RestaurantFooterCollectionReusableView.h */,
-				94E970481D8167A30054ACF6 /* RestaurantFooterCollectionReusableView.m */,
 				94E9704A1D8167D20054ACF6 /* DishCollectionViewCell.h */,
 				94E9704B1D8167D20054ACF6 /* DishCollectionViewCell.m */,
 				94E9704D1D8168560054ACF6 /* RestaurantHeaderCollectionReusableView.h */,
@@ -290,6 +304,8 @@
 				94E970531D82C5840054ACF6 /* KeywordCollectionViewCell.m */,
 				9488F1D01D830CB800B03EE7 /* WaitingView.h */,
 				9488F1D11D830CB800B03EE7 /* WaitingView.m */,
+				940806391D83733400A20996 /* DishHeaderCollectionReusableView.h */,
+				9408063A1D83733400A20996 /* DishHeaderCollectionReusableView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -419,11 +435,13 @@
 				94E970351D8012BF0054ACF6 /* RestaurantCellView.xib in Resources */,
 				94CD5B4B1D76D16500833CB4 /* Assets.xcassets in Resources */,
 				94E970441D81660D0054ACF6 /* DishCellView.xib in Resources */,
+				9468DCE71D84C15B00573BB5 /* MapDetailView.xib in Resources */,
+				9408063D1D8413D700A20996 /* RefineView.xib in Resources */,
 				94E970421D805B900054ACF6 /* RestaurantHeaderReusableView.xib in Resources */,
 				942BA5FF1D7D95FB00C03A4A /* WishlistView.xib in Resources */,
 				94CD5B491D76D16500833CB4 /* Main.storyboard in Resources */,
-				94E970461D8166990054ACF6 /* RestaurantFooterReusableView.xib in Resources */,
 				942BA5F81D7D94EC00C03A4A /* MapView.xib in Resources */,
+				940806381D83730600A20996 /* DishHeaderView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -486,6 +504,7 @@
 				94B4B1B91D7D8D10004C517A /* TabBarViewController.m in Sources */,
 				947AB4091D83316400DFD0E4 /* AnimationHelper.m in Sources */,
 				942BA6101D7F251300C03A4A /* BaseManager.m in Sources */,
+				940806401D845E1100A20996 /* RefineViewController.m in Sources */,
 				942BA6131D7F258D00C03A4A /* HTTPConstants.m in Sources */,
 				94E9703E1D80185C0054ACF6 /* RestaurantDetailViewController.m in Sources */,
 				94E970571D82D1F60054ACF6 /* ResultsViewController.m in Sources */,
@@ -502,8 +521,9 @@
 				94E9704C1D8167D20054ACF6 /* DishCollectionViewCell.m in Sources */,
 				944513561D82EC07006C5958 /* SearchManager.m in Sources */,
 				94C973361D82FFD10027C385 /* WishlistHandler.m in Sources */,
-				94E970491D8167A30054ACF6 /* RestaurantFooterCollectionReusableView.m in Sources */,
+				9408063B1D83733400A20996 /* DishHeaderCollectionReusableView.m in Sources */,
 				94CD5B401D76D16500833CB4 /* main.m in Sources */,
+				9468DCEA1D84C23200573BB5 /* MapDetailViewController.m in Sources */,
 				94E970331D800EED0054ACF6 /* AttributedTextHelper.m in Sources */,
 				942BA6021D7D967E00C03A4A /* SearchViewController.m in Sources */,
 				942BA5FD1D7D95EB00C03A4A /* WishlistViewController.m in Sources */,

@@ -7,8 +7,11 @@
 //
 
 #import "AbstractViewController.h"
+#import "RMPZoomTransitionAnimator.h"
 
-@interface WishlistViewController : AbstractViewController
+
+@interface WishlistViewController : AbstractViewController <RMPZoomTransitionAnimating>
+
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 

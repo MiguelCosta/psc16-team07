@@ -15,7 +15,7 @@
 - (id)toJSONObject {
     
     NSMutableDictionary * returnObject = [NSMutableDictionary dictionary];
-
+    
     if (self.address) {
         [returnObject setObject:self.address forKey:@"address"];
     }
@@ -40,7 +40,10 @@
     if (self.name) {
         [returnObject setObject:self.name forKey:@"name"];
     }
-
+    if (self.type) {
+        [returnObject setObject:self.name forKey:@"type"];
+    }
+    
     return returnObject;
 }
 
@@ -88,6 +91,12 @@
         if (name && [name isKindOfClass:[NSString class]]) {
             self.name = name;
         }
+        
+        if ([[jsondict objectForKey:@"type"] isKindOfClass:[NSString class]]) {
+            self.type = [jsondict objectForKey:@"type"];
+        }else {
+            self.type = [self typeForValue:[[jsondict objectForKey:@"type"] integerValue]];
+        }
     }
     
     return self;
@@ -96,6 +105,39 @@
 -(BOOL) isValid {
     
     return YES;
+}
+
+- (NSString *)typeForValue:(NSInteger)value {
+    
+    if (value == 1) {
+        return @"Portuguese";
+    }
+    if (value == 2) {
+        return @"Italian";
+    }
+    
+    if (value == 3) {
+        return @"Mexican";
+    }
+    
+    if (value == 4) {
+        return @"Indian";
+    }
+    
+    if (value == 5) {
+        return @"SeaFood";
+    }
+    
+    if (value == 6) {
+        return @"Traditional";
+    }
+    
+    if (value == 1) {
+        return @"Japanese";
+    }
+    
+    return @"Undefined";
+    
 }
 
 @end

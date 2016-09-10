@@ -88,24 +88,17 @@
     
     [self.requestManager POST:[self constructEndpointFromString:endpoint] parameters:postData progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if (successBlock) {
-            if ([responseObject isKindOfClass:[NSDictionary class]]) {
-                successBlock([responseObject objectForKey:@"data"]);
-            } else if ([responseObject isKindOfClass:[NSData class]]) {
-                id jsonData = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:nil];
-                if ([jsonData isKindOfClass:[NSDictionary class]]) {
-                    successBlock([responseObject objectForKey:@"data"]);
-                }
-            }
+            successBlock(responseObject);
         }
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        if ([self.delegate respondsToSelector:@selector(managerDidFailed:withError:)]) {
-            [self.delegate managerDidFailed:self withError:[self handleErrorForRequestOperation:task andError:error]];
-        }
-        if (failureBock) {
-            failureBock([self handleErrorForRequestOperation:task andError:error]);
-        }
-        
-    }];
+     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+         if ([self.delegate respondsToSelector:@selector(managerDidFailed:withError:)]) {
+             [self.delegate managerDidFailed:self withError:[self handleErrorForRequestOperation:task andError:error]];
+         }
+         if (failureBock) {
+             failureBock([self handleErrorForRequestOperation:task andError:error]);
+         }
+         
+     }];
 }
 
 - (void)getDataFromEndpoint:(NSString *) endpoint respondToDelegate:(BOOL)respondToDelegate cached:(BOOL)cached successBlock:(successBlock)successBlock andFailureBlock:(failureBlock)failureBock {
@@ -114,15 +107,7 @@
     
     [self.requestManager GET:[self constructEndpointFromString:endpoint] parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if (successBlock) {
-            if ([responseObject isKindOfClass:[NSArray class]]) {
-                
-                successBlock(responseObject);
-            } else if ([responseObject isKindOfClass:[NSData class]]) {
-                id jsonData = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:nil];
-                if ([jsonData isKindOfClass:[NSDictionary class]]) {
-                    successBlock([responseObject objectForKey:@"data"]);
-                }
-            }
+            successBlock(responseObject);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         if (respondToDelegate) {
@@ -137,6 +122,20 @@
             failureBock([self handleErrorForRequestOperation:task andError:error]);
         }
     }];
+}
+
+- (void)addHeadersWithLatitude:(NSString *)latitude longitude:(NSString *)longitude andRange:(NSString *)range {
+    
+    if (latitude) {
+        [self.requestManager.requestSerializer setValue:latitude forHTTPHeaderField:@"x-latitude"];
+    }
+    
+    if (longitude) {
+        [self.requestManager.requestSerializer setValue:longitude forHTTPHeaderField:@"x-longitude"];
+    }
+    
+    [self.requestManager.requestSerializer setValue:range forHTTPHeaderField:@"x-range"];
+    
 }
 
 - (void)getData:(NSString *)endpoint successBlock:(successBlock)successBlock andFailureBlock:(failureBlock)failureBock {

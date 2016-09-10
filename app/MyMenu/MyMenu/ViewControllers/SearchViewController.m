@@ -47,7 +47,7 @@
     
     self.txtSearch.tintColor = [UIColor flatWatermelonColor];
     
-    self.dataSourceArray = [NSArray arrayWithObjects:@"Sushi", @"Pasta", @"Feijoada",@"Vegetariano", @"Pizza", @"Frango", @"Marisco", nil];
+    self.dataSourceArray = [NSArray arrayWithObjects:@"Italian", @"Mexican", @"Pasta",@"Vegetarian", @"Pizza", @"Seafood", @"Paleo", nil];
     
     [self.collectionView registerNib:[KeywordCollectionViewCell registerNib] forCellWithReuseIdentifier:[KeywordCollectionViewCell reusableIdentifier]];
     
@@ -155,6 +155,17 @@
         ResultsViewController * resultView = [[ResultsViewController alloc] initWithResults:results andKeywordSearched:keyword];
         
         [self.navigationController pushViewController:resultView animated:YES];
+    });
+}
+
+#pragma mark - BaseManagerDelegate
+- (void)managerDidFailed:(BaseManager *)manager withError:(NSError *)err {
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        [self dismissWaitingView];
+        
+        [self alertViewWithTitle:@"MyMenu" cancelButtonTitle:@"OK" message:@"Try again later." andOtherButtonTitle:nil];
     });
 }
 

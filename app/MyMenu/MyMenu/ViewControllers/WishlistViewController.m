@@ -83,15 +83,13 @@
     
     [restaurantCell loadRestaurant:[self.wishlistArray objectAtIndex:indexPath.row] withWishlistHandler:self.wishlistHandler];
     
-    [restaurantCell.restaurantImg setImage:[UIImage imageNamed:[NSString stringWithFormat:@"ic-test%ld", (long)indexPath.row]]];
-    
     return restaurantCell;
 }
 
 #pragma mark - UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    RestaurantDetailViewController * restaurantDetail  = [[RestaurantDetailViewController alloc] initWithRestaurant:[self.wishlistArray objectAtIndex:indexPath.row]];
+    RestaurantDetailViewController * restaurantDetail  = [[RestaurantDetailViewController alloc] initWithRestaurant:[self.wishlistArray objectAtIndex:indexPath.row] fromMap:NO];
     
     [self.navigationController pushViewController:restaurantDetail animated:YES];
 }
@@ -99,7 +97,7 @@
 #pragma mark - UICollectionViewDelegateFlowLayout
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
 
-    return CGSizeMake([UIScreen mainScreen].bounds.size.width, 150);
+    return CGSizeMake([UIScreen mainScreen].bounds.size.width, 250);
 }
 
 #pragma mark - DZNEmptyDataSetSource
@@ -149,7 +147,7 @@
     NSIndexPath *selectedIndexPath = [[self.collectionView indexPathsForSelectedItems] firstObject];
     RestaurantCollectionViewCell *cell = (RestaurantCollectionViewCell *)[self.collectionView cellForItemAtIndexPath:selectedIndexPath];
     UIImageView *imageView = [[UIImageView alloc] initWithImage:cell.restaurantImg.image];
-    imageView.contentMode = UIViewContentModeScaleAspectFit;
+    imageView.contentMode = UIViewContentModeScaleAspectFill;
     imageView.clipsToBounds = NO;
     imageView.userInteractionEnabled = NO;
     imageView.frame = [cell.restaurantImg convertRect:cell.restaurantImg.frame toView:self.collectionView.superview];
@@ -169,5 +167,4 @@
     CGRect cellFrameInSuperview = [cell.restaurantImg convertRect:cell.restaurantImg.frame toView:self.collectionView.superview];
     return cellFrameInSuperview;
 }
-
 @end

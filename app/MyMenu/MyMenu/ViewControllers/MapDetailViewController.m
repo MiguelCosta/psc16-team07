@@ -1,49 +1,64 @@
 //
-//  RestaurantFooterCollectionReusableView.m
+//  MapDetailViewController.m
 //  MyMenu
 //
-//  Created by Renata on 09/09/16.
+//  Created by Renata on 10/09/16.
 //  Copyright © 2016 Caldonian. All rights reserved.
 //
 
-#import "RestaurantFooterCollectionReusableView.h"
-#import "Restaurant.h"
-#import <MapKit/MapKit.h>
+#import "MapDetailViewController.h"
+
+@interface MapDetailViewController () <MKMapViewDelegate>
+
+@property (nonatomic, assign) NSNumber          * latitude;
+@property (nonatomic, assign) NSNumber          * longitude;
+
+@end
+
+@implementation MapDetailViewController
 
 
-@implementation RestaurantFooterCollectionReusableView
-
-
-#pragma mark - CollectionViewCellProtocol
-+ (UINib *)registerNib {
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     
-    UINib * restaurantNib = [UINib nibWithNibName:@"RestaurantFooterReusableView" bundle:nil];
+    self = [super initWithNibName:@"MapDetailView" bundle:nibBundleOrNil];
     
-    return restaurantNib;
+    return self;
 }
 
-+ (NSString *)reusableIdentifier {
+- (instancetype)initWithLatitude:(NSNumber *)latitude andLongitude:(NSNumber *)longitude {
     
-    return @"Footer";
+    self = [super init];
+    
+    if (self) {
+        
+        self.longitude = longitude;
+        
+        self.latitude = latitude;
+    }
+    
+    return self;
 }
 
-- (void)updateRestaurantPosition:(Restaurant *)restaurant {
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    
+    [self setTitle:@"Map"];
     
     self.mapView.delegate = self;
     
-    CLLocationCoordinate2D cordinates = CLLocationCoordinate2DMake([restaurant.latitude doubleValue], [restaurant.longitude doubleValue]);
+    CLLocationCoordinate2D cordinates = CLLocationCoordinate2DMake([self.latitude doubleValue], [self.longitude doubleValue]);
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(cordinates, 800, 800);
     [self.mapView setRegion:[self.mapView regionThatFits:region] animated:NO];
     
     // Add an annotation
     MKPointAnnotation *point = [[MKPointAnnotation alloc] init];
     point.coordinate = cordinates;
-    point.title = @"Where am I?";
-    point.subtitle = @"I'm here!!!";
     
     [self.mapView addAnnotation:point];
 }
 
+#pragma mark - MKMapViewDelegate
 -(MKAnnotationView *)mapView:(MKMapView *)mV viewForAnnotation:(id <MKAnnotation>)annotation
 {
     MKAnnotationView *pinView = nil;
@@ -60,5 +75,6 @@
     
     return pinView;
 }
+
 
 @end

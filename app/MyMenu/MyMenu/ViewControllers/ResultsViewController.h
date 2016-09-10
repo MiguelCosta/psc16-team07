@@ -13,9 +13,13 @@
 @interface ResultsViewController : AbstractViewController <RMPZoomTransitionAnimating>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (weak, nonatomic) IBOutlet UIButton *btRestaurants;
+@property (weak, nonatomic) IBOutlet UIButton *btDishes;
+@property (weak, nonatomic) IBOutlet UIView *tabView;
 
 
 - (instancetype)initWithResults:(NSArray *)results andKeywordSearched:(NSString *)keyword;
 
+- (void)refineWithResults:(NSArray *)results;
 
 @end

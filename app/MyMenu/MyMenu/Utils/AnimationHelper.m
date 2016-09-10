@@ -59,18 +59,15 @@
     [button.layer pop_addAnimation:layerScaleAnimation forKey:@"layerScaleAnimation"];
 }
 
-+ (void)slideAnimationInView:(UIView *)view withHeighDiferencial:(CGFloat)diferencial {
++ (void)slideAnimationInView:(NSLayoutConstraint *)view withHeighDiferencial:(CGFloat)diferencial {
+
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-        view.layer.opacity = 1;
-    });
-    
-    POPSpringAnimation * positionAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerTranslationY];
-    positionAnimation.fromValue = @(view.frame.size.height-diferencial);
-    positionAnimation.toValue = @(0);
+    POPSpringAnimation * positionAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPLayoutConstraintConstant];
+    positionAnimation.fromValue = @(view.constant);
+    positionAnimation.toValue = @(diferencial);
     positionAnimation.springBounciness = 7;
     
-    [view.layer pop_addAnimation:positionAnimation forKey:@"positionAnimation"];
+    [view pop_addAnimation:positionAnimation forKey:@"positionAnimation"];
 }
 
 + (void)slideCloseAnimationInView:(UIView *)view withDelegate:(id)delegate {

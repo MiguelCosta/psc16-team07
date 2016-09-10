@@ -17,6 +17,6 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
 
-- (instancetype)initWithRestaurant:(Restaurant *)restaurant;
+- (instancetype)initWithRestaurant:(Restaurant *)restaurant fromMap:(BOOL)fromMap;
 
 @end

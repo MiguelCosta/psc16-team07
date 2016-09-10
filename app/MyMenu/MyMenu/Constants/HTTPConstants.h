@@ -15,4 +15,8 @@ extern NSString * const HTTPHostServerURL;
 
 extern NSString * const HTTPSearch;
 
+extern NSString * const HTTPDish;
+
+extern NSString * const HTTPMapSearch;
+
 @end

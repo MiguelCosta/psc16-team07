@@ -15,9 +15,20 @@
 
 + (NSAttributedString *)defaultAttributedTitleForLabelWithText:(NSString *)text;
 
++ (NSAttributedString *)defaultWhiteAttributedTitleForLabelWithText:(NSString *)text;
+
++ (NSAttributedString *)defaultGrayAttributedTitleForLabelWithText:(NSString *)text;
+
++ (NSAttributedString *)defaultAttributedRedTitleForLabelWithText:(NSString *)text;
+
 + (NSAttributedString *)defaultAttributedTextForLabelWithText:(NSString *)text;
+
++ (NSAttributedString *)defaultAttributedRedTextForLabelWithText:(NSString *)text;
+
++ (NSAttributedString *)defaultBoldAttributedTextForLabelWithText:(NSString *)text;
 
 + (NSAttributedString *)defaultAttributedDescriptionForLabelWithText:(NSString *)text;
 
++ (NSAttributedString *)defaultBlackAttributedDescriptionForLabelWithText:(NSString *)text;
 
 @end

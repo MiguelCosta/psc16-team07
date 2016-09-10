@@ -37,17 +37,27 @@
     
     MapViewController * mapView = [[MapViewController alloc] init];
     
+    UINavigationController * mapNavController = [[UINavigationController alloc] initWithRootViewController:mapView];
+    mapNavController.delegate = self;
+    
+    mapNavController.navigationBar.translucent = NO;
+    [mapNavController.navigationBar setBarTintColor:[UIColor flatWatermelonColorDark]];
+    mapNavController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
+
+    
     WishlistViewController * wishlistView = [[WishlistViewController alloc] init];
     
     UINavigationController * wishlistNavController = [[UINavigationController alloc] initWithRootViewController:wishlistView];
+    wishlistNavController.delegate = self;
+
     wishlistNavController.navigationBar.translucent = NO;
     [wishlistNavController.navigationBar setBarTintColor:[UIColor flatWatermelonColorDark]];
     wishlistNavController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
 
     
-    [self setViewControllers:[NSArray arrayWithObjects:searchNavController, mapView, wishlistNavController, nil]];
+    [self setViewControllers:[NSArray arrayWithObjects:searchNavController, mapNavController, wishlistNavController, nil]];
     
-    [self setSelectedViewController:mapView];
+    [self setSelectedViewController:mapNavController];
     
     self.tabBar.translucent = NO;
     

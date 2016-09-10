@@ -20,7 +20,7 @@
 
 + (void)bounceButton:(UIButton *)button;
 
-+ (void)slideAnimationInView:(UIView *)view withHeighDiferencial:(CGFloat)diferencial;
++ (void)slideAnimationInView:(NSLayoutConstraint *)view withHeighDiferencial:(CGFloat)diferencial;
 
 + (void)alphaAnimationInView:(UIView *)view toValue:(CGFloat)alphaValue;
 

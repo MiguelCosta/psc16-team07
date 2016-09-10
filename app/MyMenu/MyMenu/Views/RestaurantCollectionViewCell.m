@@ -44,12 +44,15 @@
     
     [super awakeFromNib];
     
- //   [self resetImage];
-    
     self.containerView.layer.cornerRadius = 2.0;
+    self.containerView.backgroundColor = [[UIColor flatWhiteColor] colorWithAlphaComponent:0.9];
+}
+
+- (void)prepareForReuse {
     
+    [super prepareForReuse];
     
-  self.containerView.backgroundColor = [UIColor colorWithGradientStyle:UIGradientStyleTopToBottom withFrame:self.containerView.frame andColors:[NSArray arrayWithObjects:[UIColor flatWhiteColor], [UIColor clearColor], nil]];
+    [self resetImage];
 }
 
 - (void)resetImage {
@@ -64,13 +67,28 @@
     self.restaurant = restaurant;
     
     self.lblName.attributedText = [UILabelCustomization defaultAttributedTextForLabelWithText:restaurant.name];
-    self.lblDescription.attributedText = [UILabelCustomization defaultAttributedDescriptionForLabelWithText:restaurant.restaurantDescription];
+    self.lblDescription.attributedText = [UILabelCustomization defaultBlackAttributedDescriptionForLabelWithText:restaurant.type];
     
     [self.btWishlist setSelected:[self.wishlistHandler checkIfRestaurantIsOnWishlist:restaurant]];
     
-    if ([restaurant.url length] != 0) {
-        [self.restaurantImg setImageWithURL:[NSURL URLWithString:restaurant.url]];
-    }
+    [self.restaurantImg setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://mymenuapi.azurewebsites.net/api/Restaurants/%@/Photo", [restaurant.key stringValue]]]] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+        
+        if (response == nil && image) {
+            self.restaurantImg.image = image;
+            self.restaurantImg.backgroundColor = [UIColor whiteColor];
+        }else {
+            if (image) {
+                self.restaurantImg.backgroundColor = [UIColor whiteColor];
+                [UIView transitionWithView:self.restaurantImg
+                                  duration:0.3
+                                   options:UIViewAnimationOptionTransitionCrossDissolve
+                                animations:^{
+                                    self.restaurantImg.image = image;
+                                }
+                                completion:NULL];
+            }
+        }
+    } failure:nil];
 }
 
 #pragma mark - IBActions

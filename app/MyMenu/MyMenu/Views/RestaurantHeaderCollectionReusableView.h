@@ -10,9 +10,17 @@
 #import "CollectionViewCellProtocol.h"
 
 
+@class Restaurant;
+
 @interface RestaurantHeaderCollectionReusableView : UICollectionReusableView <CollectionViewCellProtocol>
 
 
 @property (weak, nonatomic) IBOutlet UIView *containerView;
 @property (nonatomic, weak) IBOutlet UIImageView    * img;
+@property (weak, nonatomic) IBOutlet UILabel *lblPhone;
+@property (weak, nonatomic) IBOutlet UILabel *lblCategory;
+
+
+- (void)loadRestaurant:(Restaurant *)restaurant;
+
 @end

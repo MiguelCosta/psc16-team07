@@ -13,6 +13,10 @@
 
 NSString * const HTTPHostServerURL = @"mymenuapi.azurewebsites.net/";
 
-NSString * const HTTPSearch = @"api/Restaurants?search=%@";
+NSString * const HTTPSearch = @"api/Search?query=%@";
+
+NSString * const HTTPDish = @"api/Restaurants/%@/Dishes";
+
+NSString * const HTTPMapSearch = @"api/Search";
 
 @end
