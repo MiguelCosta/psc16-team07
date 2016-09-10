@@ -1,5 +1,8 @@
-﻿using MyMenu.Api.Models.Filters;
+﻿using MyMenu.Api.Models.Enums;
+using MyMenu.Api.Models.Filters;
 using MyMenu.Api.Models.Infrastructure;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -40,6 +43,41 @@ namespace MyMenu.Api.Controllers
             filter.Range = Helpers.RequestHeaderHelper.GetRange(Request);
 
             results.Restaurants = await _repo.Restaurants.SearchAsync(filter);
+
+            var restIds = results.Restaurants.Select(r => r.Id);
+
+            results.Dishes = await _repo.Dishes.GetAllAsync(restIds);
+
+            return Ok(results);
+        }
+
+        /// <summary>
+        /// Search restaurants and dishes.
+        /// HeadersRequest:
+        /// x-latitude: current latitude of user (decimal);
+        /// x-longitude: current longitude of user (decimal);
+        /// x-range: range of search (km);
+        /// </summary>
+        /// <param name="filter"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [ResponseType(typeof(Dtos.SearchResultDto))]
+        public async Task<IHttpActionResult> Filter([FromBody] Dtos.SearchFilterDto filter)
+        {
+            var results = new Dtos.SearchResultDto();
+
+            var restFilter = new RestaurantFilter(string.Empty);
+            restFilter.Latitude = Helpers.RequestHeaderHelper.GetLatitude(Request);
+            restFilter.Longitude = Helpers.RequestHeaderHelper.GetLongitude(Request);
+            restFilter.Range = Helpers.RequestHeaderHelper.GetRange(Request);
+
+            restFilter.Keywords = filter.Keywords ?? new List<string>();
+            restFilter.MaxPrice = filter.MaxPrice;
+            restFilter.RestaurantTypes = (filter.Types ?? new List<string>())
+                .Select(t => (RestaurantType)Enum.Parse(typeof(RestaurantType), t))
+                .ToList();
+
+            results.Restaurants = await _repo.Restaurants.SearchRefineAsync(restFilter);
 
             var restIds = results.Restaurants.Select(r => r.Id);
 

@@ -10,20 +10,24 @@ namespace MyMenu.Api.Models.Filters
             Search = search;
             DishName = search;
             RestaurantName = search;
-            RestaurantType = GetRestaurantType(Search);
+            RestaurantTypes = GetRestaurantType(Search);
         }
 
         public string DishName { get; set; } = string.Empty;
+
+        public List<string> Keywords { get; set; } = new List<string>();
 
         public decimal Latitude { get; set; } = 0;
 
         public decimal Longitude { get; set; } = 0;
 
+        public decimal? MaxPrice { get; set; }
+
         public int Range { get; set; } = 1;
 
         public string RestaurantName { get; set; } = string.Empty;
 
-        public List<Enums.RestaurantType> RestaurantType { get; set; } = new List<Enums.RestaurantType>();
+        public List<Enums.RestaurantType> RestaurantTypes { get; set; } = new List<Enums.RestaurantType>();
 
         public string Search { get; set; }
 

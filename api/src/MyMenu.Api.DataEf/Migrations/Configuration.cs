@@ -48,7 +48,8 @@ namespace MyMenu.Api.DataEf.Migrations
                                 Latitude = 41.1476430000M,
                                 Longitude = -8.6122000000M,
                                 PhoneNumber = "24 2010763",
-                                Type = Models.Enums.RestaurantType.Italian
+                                Type = Models.Enums.RestaurantType.Italian,
+                                Photo = "1.jpg"
                             },
                             new Restaurant
                             {
@@ -60,7 +61,8 @@ namespace MyMenu.Api.DataEf.Migrations
                                 Latitude = 41.1435345M,
                                 Longitude = -8.6164471M,
                                 PhoneNumber = "24 2010761",
-                                Type = Models.Enums.RestaurantType.Traditional
+                                Type = Models.Enums.RestaurantType.Traditional,
+                                Photo = "2.jpg"
                             },
                             new Restaurant
                             {
@@ -72,7 +74,8 @@ namespace MyMenu.Api.DataEf.Migrations
                                 Latitude = 41.1522620000M,
                                 Longitude = -8.6092916M,
                                 PhoneNumber = "24 2010762",
-                                Type = Models.Enums.RestaurantType.Mexican
+                                Type = Models.Enums.RestaurantType.Mexican,
+                                Photo = "3.jpg"
                             },
                             new Restaurant
                             {
@@ -84,7 +87,8 @@ namespace MyMenu.Api.DataEf.Migrations
                                 Latitude = 41.1484400000M,
                                 Longitude = -8.6411512M,
                                 PhoneNumber = "24 2010764",
-                                Type = Models.Enums.RestaurantType.SeaFood
+                                Type = Models.Enums.RestaurantType.SeaFood,
+                                Photo = "4.jpg"
                             },
                             new Restaurant
                             {
@@ -96,7 +100,8 @@ namespace MyMenu.Api.DataEf.Migrations
                                 Latitude = 41.1488144M,
                                 Longitude = -8.6143679M,
                                 PhoneNumber = "24 2010765",
-                                Type = Models.Enums.RestaurantType.Italian
+                                Type = Models.Enums.RestaurantType.Italian,
+                                Photo = "5.jpg"
                             },
                             new Restaurant
                             {
@@ -108,7 +113,8 @@ namespace MyMenu.Api.DataEf.Migrations
                                 Latitude = 41.1454492M,
                                 Longitude = -8.6172115M,
                                 PhoneNumber = "24 2010766",
-                                Type = Models.Enums.RestaurantType.Mexican
+                                Type = Models.Enums.RestaurantType.Mexican,
+                                Photo = "6.jpg"
                             },
                             new Restaurant
                             {
@@ -120,7 +126,8 @@ namespace MyMenu.Api.DataEf.Migrations
                                 Latitude = 41.1491636M,
                                 Longitude = -8.6136065M,
                                 PhoneNumber = "24 2010769",
-                                Type = Models.Enums.RestaurantType.Indian
+                                Type = Models.Enums.RestaurantType.Indian,
+                                Photo = "7.jpg"
                             },
                             new Restaurant
                             {
@@ -132,7 +139,8 @@ namespace MyMenu.Api.DataEf.Migrations
                                 Latitude = 41.1875969M,
                                 Longitude = -8.7036783M,
                                 PhoneNumber = "24 2010768",
-                                Type = Models.Enums.RestaurantType.Indian
+                                Type = Models.Enums.RestaurantType.Indian,
+                                Photo = "8.jpg"
                             },
                             new Restaurant
                             {
@@ -144,7 +152,8 @@ namespace MyMenu.Api.DataEf.Migrations
                                 Latitude = 41.1840471M,
                                 Longitude = -8.6979065M,
                                 PhoneNumber = "24 2010767",
-                                Type = Models.Enums.RestaurantType.Japanese
+                                Type = Models.Enums.RestaurantType.Japanese,
+                                Photo = "9.jpg"
                             }
                         );
         }

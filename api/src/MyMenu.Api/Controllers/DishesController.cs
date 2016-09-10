@@ -3,14 +3,9 @@ using MyMenu.Api.Dtos;
 using MyMenu.Api.Models;
 using MyMenu.Api.Models.Infrastructure;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Drawing.Imaging;
-using System.IO;
 using System.Net;
 using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Threading.Tasks;
-using System.Web.Hosting;
 using System.Web.Http;
 using System.Web.Http.Description;
 
@@ -72,23 +67,8 @@ namespace MyMenu.Api.Controllers
                 return new HttpResponseMessage(HttpStatusCode.NoContent);
             }
 
-            var result = new HttpResponseMessage(HttpStatusCode.OK);
-            string filePath = HostingEnvironment.MapPath($"~/Uploads/Dishes/{dish.Photo}");
-            if(File.Exists(filePath) == false)
-            {
-                return new HttpResponseMessage(HttpStatusCode.NotFound);
-            }
+            var result = await Helpers.ResponseHelper.GenerateResponseImage($"~/Uploads/Dishes/{dish.Photo}");
 
-            FileStream fileStream = new FileStream(filePath, FileMode.Open);
-            Image image = Image.FromStream(fileStream);
-            MemoryStream memoryStream = new MemoryStream();
-            image.Save(memoryStream, ImageFormat.Jpeg);
-            result.Content = new ByteArrayContent(memoryStream.ToArray());
-            result.Content.Headers.ContentType = new MediaTypeHeaderValue("image/jpeg");
-            await fileStream.FlushAsync();
-            fileStream.Close();
-            await memoryStream.FlushAsync();
-            memoryStream.Close();
             return result;
         }
 

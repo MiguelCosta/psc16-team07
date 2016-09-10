@@ -15,5 +15,7 @@ namespace MyMenu.Api.Models.Infrastructure
         Task<IEnumerable<RestaurantModel>> GetAllAsync();
 
         Task<IEnumerable<RestaurantModel>> SearchAsync(RestaurantFilter search);
+
+        Task<IEnumerable<RestaurantModel>> SearchRefineAsync(RestaurantFilter search);
     }
 }

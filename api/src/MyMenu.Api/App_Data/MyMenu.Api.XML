@@ -528,6 +528,13 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:MyMenu.Api.Controllers.RestaurantsController.Photo(System.Int32)">
+            <summary>
+            Get restaurant photo
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
         <member name="M:MyMenu.Api.Controllers.RestaurantsController.Post(MyMenu.Api.Dtos.RestaurantDto)">
             <summary>
             Create a restaurant
@@ -566,10 +573,28 @@
             <param name="query"></param>
             <returns></returns>
         </member>
+        <member name="M:MyMenu.Api.Controllers.SearchController.Filter(MyMenu.Api.Dtos.SearchFilterDto)">
+            <summary>
+            Search restaurants and dishes.
+            HeadersRequest:
+            x-latitude: current latitude of user (decimal);
+            x-longitude: current longitude of user (decimal);
+            x-range: range of search (km);
+            </summary>
+            <param name="filter"></param>
+            <returns></returns>
+        </member>
         <member name="M:MyMenu.Api.Controllers.TypesController.Get">
             <summary>
             All restaurants types
             </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MyMenu.Api.Helpers.ResponseHelper.GenerateResponseImage(System.String)">
+            <summary>
+            Generate response with image
+            </summary>
+            <param name="file"></param>
             <returns></returns>
         </member>
     </members>

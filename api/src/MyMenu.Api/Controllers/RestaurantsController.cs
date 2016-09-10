@@ -3,6 +3,7 @@ using MyMenu.Api.Models;
 using MyMenu.Api.Models.Infrastructure;
 using System.Collections.Generic;
 using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
@@ -38,6 +39,31 @@ namespace MyMenu.Api.Controllers
         {
             var rest = await _repo.Restaurants.GetAllAsync();
             return Ok(rest);
+        }
+
+        /// <summary>
+        /// Get restaurant photo
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("api/Restaurants/{id}/Photo")]
+        public async Task<HttpResponseMessage> Photo(int id)
+        {
+            var rest = await _repo.Restaurants.FindAsync(id);
+            if(rest == null)
+            {
+                return new HttpResponseMessage(HttpStatusCode.NotFound);
+            }
+
+            if(string.IsNullOrWhiteSpace(rest.Photo))
+            {
+                return new HttpResponseMessage(HttpStatusCode.NoContent);
+            }
+
+            var result = await Helpers.ResponseHelper.GenerateResponseImage($"~/Uploads/Restaurants/{rest.Photo}");
+
+            return result;
         }
 
         /// <summary>

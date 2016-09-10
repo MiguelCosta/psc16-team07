@@ -282,16 +282,18 @@
     <Compile Include="Controllers\RestaurantsController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\TypesController.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Dtos\DishDto.cs" />
     <Compile Include="Dtos\RestaurantDto.cs" />
+    <Compile Include="Dtos\SearchFilterDto.cs" />
     <Compile Include="Dtos\SearchResultDto.cs" />
     <Compile Include="Dtos\TypeDto.cs" />
     <Compile Include="ErrorHandler\AiHandleErrorAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\EnumHelper.cs" />
     <Compile Include="Helpers\RequestHeaderHelper.cs" />
+    <Compile Include="Helpers\ResponseHelper.cs" />
     <Compile Include="Mapping\DishMapping.cs" />
     <Compile Include="Mapping\Map.cs" />
     <Compile Include="Mapping\RestaurantMapping.cs" />
@@ -406,6 +408,7 @@
     <Content Include="Uploads\Dishes\46.jpg" />
     <Content Include="Uploads\Dishes\47.jpg" />
     <Content Include="Uploads\Dishes\48.jpg" />
+    <Content Include="Uploads\Dishes\49.jpg" />
     <Content Include="Uploads\Dishes\5.jpg" />
     <Content Include="Uploads\Dishes\50.jpg" />
     <Content Include="Uploads\Dishes\51.jpg" />
@@ -443,6 +446,16 @@
     <Content Include="Uploads\Dishes\80.jpg" />
     <Content Include="Uploads\Dishes\9.jpeg" />
     <Content Include="Uploads\Dishes\9.jpg" />
+    <Content Include="Uploads\Restaurants\1.jpg" />
+    <Content Include="Uploads\Restaurants\10.jpg" />
+    <Content Include="Uploads\Restaurants\2.jpg" />
+    <Content Include="Uploads\Restaurants\3.jpg" />
+    <Content Include="Uploads\Restaurants\4.jpg" />
+    <Content Include="Uploads\Restaurants\5.jpg" />
+    <Content Include="Uploads\Restaurants\6.jpg" />
+    <Content Include="Uploads\Restaurants\7.jpg" />
+    <Content Include="Uploads\Restaurants\8.jpg" />
+    <Content Include="Uploads\Restaurants\9.jpg" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
