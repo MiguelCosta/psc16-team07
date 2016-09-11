@@ -8,9 +8,9 @@
 - [Json.NET](http://www.newtonsoft.com/json)
 - [Unity](https://www.nuget.org/packages/Unity/)
 - [AutoMapper](https://www.nuget.org/packages/AutoMapper/)
-- [Linqkit](https://www.nuget.org/packages/LinqKit/)
+- [LinqKit](https://www.nuget.org/packages/LinqKit/)
 
-### Deploy
+### Hosting
 
 - Azure
 - http://mymenuapi.azurewebsites.net/
@@ -21,19 +21,20 @@
 
 ### Project Structure
 
-1. **MyMenu.Api**
+- **MyMenu.Api**
 
 Projecto Asp.Net Web Api que é responsável por receber os pedidos HTTP e responder ao cliente.
 
-2. **MyMenu.Api.Models**
+- **MyMenu.Api.Models**
 
 Projeto Class Library que não tem dependências e contêm as classes base do sistema.
 
-3. **MyMenu.Api.DataEf**
+- **MyMenu.Api.DataEf**
 
 Projecto que utiliza Entity Framework para comunicar com a base de dados SqlServer.
 Implementa todos os Interfaces MyMenu.Api.Models.Infrastructure para a WebApi conseguir utilizar.
 
 ### Database
 
-Azure Sql Server
+- Azure Sql Server
+- Entity Framework Code First
