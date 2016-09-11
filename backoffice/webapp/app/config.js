@@ -13,3 +13,12 @@ myMenu.constant('RESTAURANT_TYPE', [
     {id: 6, name: "Traditional"},
     {id: 7, name: "Japanese"}
 ]);
+myMenu.constant('DAY_OF_WEEK', [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday"
+]);

@@ -1,25 +1,30 @@
 <div class="create-account-container">
-    <div id="header">
+    <div>
+        <a href="#!/">
+            <img data-ng-src="libs/images/logo_full_color.png" width=200 height=200 style="display: block; margin-left: auto; margin-right: auto;">
+        </a>
+    </div>
+    <div id="header" style="margin-bottom: 30px;">
         <h3 class="display-1 caps" style="text-align: center;">Create Account</h3>
     </div>
     <div id="information">
         <div>
             <div class="form-group">
-                <label for="userEmail">Email</label>
+                <label for="userEmail" style="text-transform: uppercase;">Email</label>
                 <input type="email" class="form-control" data-ng-model="data.email" id="userEmail" placeholder="Email" tabindex="1">
             </div>
             <div class="form-group">
-                <label for="userPassword">Password</label>
+                <label for="userPassword" style="text-transform: uppercase;">Password</label>
                 <input type="password" class="form-control" data-ng-model="data.password" id="userPassword" placeholder="Password" tabindex="2">
             </div>
             <div class="form-group">
-                <label for="userConfirmPassword">Confirm Password</label>
+                <label for="userConfirmPassword" style="text-transform: uppercase;">Confirm Password</label>
                 <input type="password" class="form-control" data-ng-model="data.confirmPassword" id="userConfirmPassword" placeholder="Confirm Password" tabindex="3">
             </div>
         </div>
     </div>
     <div id="form-section">
-        <button data-ng-disabled="!isDataValid()" type="button" class="btn btn-blue fullWidth" tabindex="3" data-ng-click="createAccount()" style="background-color: #303031; color:#FFF;">Create Account&nbsp;<img data-ng-if="status.isProcessing" src="libs/images/loading.gif"/></button>
+        <button data-ng-disabled="!isDataValid()" type="button" class="btn btn-blue fullWidth" tabindex="3" data-ng-click="createAccount()" style="background-color: #303031; color:#FFF;">CREATE ACCOUNT&nbsp;<img data-ng-if="status.isProcessing" src="libs/images/loading.gif"/></button>
         <div id="error" data-ng-if="status.error.message !== null">
             <span>{{status.error.message}}</span>
         </div>

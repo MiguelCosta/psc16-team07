@@ -1,30 +1,15 @@
 var myMenu = myMenu || {};
 
-myMenu.controller('Home', function ($scope, $rootScope, $location, SessionManager, BackofficeResource, common, RESTAURANT_TYPE, RESTAURANT_STATUS) {
+myMenu.controller('Home', function ($scope, $rootScope, $location, SessionManager, BackofficeResource, common, RESTAURANT_TYPE, RESTAURANT_STATUS, DAY_OF_WEEK) {
 
     $scope.session = SessionManager;
     $scope.location = $location;
-    $scope.userName = "";
 
     if (angular.isUndefined($scope.session.getToken())) {
-        //$location.path('/');
+        $location.path('/');
     }
 
-    $scope.logout = function () {
-        $scope.session.logout();
-    };
-
-    $scope.showNavbar = function () {
-        if ($location.path() !== '/' && $location.path() !== '/create/account')
-            return true;
-        else
-            return false;
-    };
-
     $scope.init = function () {
-        $scope.userName = $scope.session.userName;
-        console.log('username: ' + $scope.userName);
-
         $scope.fetchRestaurants();
     };
 
@@ -32,6 +17,7 @@ myMenu.controller('Home', function ($scope, $rootScope, $location, SessionManage
     $scope.restaurantType = RESTAURANT_TYPE;
     $scope.restaurants = [];
     $scope.selectedRestaurant = null;
+    $scope.idSelectedRestaurant = null;
 
     $scope.getRestaurantType = function (typeId) {
         return $scope.restaurantType[typeId].name;
@@ -40,12 +26,7 @@ myMenu.controller('Home', function ($scope, $rootScope, $location, SessionManage
     $scope.createRestaurant = function () {
         common.showRestaurantInfo('createRestaurant', null, function (result) {
             if (result) {
-                console.log('save button!');
-                console.log(result);
-                //$scope.searchParams.colors = result;
-                //$scope.searchParams.flatColors = getColorTags(result);
-
-                // TODO mostrar pop up de editar restaurant com sucesso
+                $scope.fetchRestaurants();
             }
         });
     };
@@ -53,17 +34,14 @@ myMenu.controller('Home', function ($scope, $rootScope, $location, SessionManage
     $scope.editRestaurantInfo = function (restaurant) {
         common.showRestaurantInfo('editRestaurant', restaurant, function (result) {
             if (result) {
-                console.log('save button!');
-                console.log(result);
-                //$scope.searchParams.colors = result;
-                //$scope.searchParams.flatColors = getColorTags(result);
-
-                // TODO mostrar pop up de editar restaurant com sucesso
+                $scope.fetchRestaurants();
             }
         });
     };
 
     $scope.showRestaurantMenus = function (restaurant) {
+        $scope.idSelectedRestaurant = restaurant.id;
+
         $scope.menus = [];
         $scope.selectedRestaurant = restaurant;
 
@@ -79,76 +57,42 @@ myMenu.controller('Home', function ($scope, $rootScope, $location, SessionManage
 
     /* Menu Management */
     $scope.menus = [];
-
-
-
-    /* Restaurant management */
     $scope.mSortType = 'name';
     $scope.mSortReverse = false;
-    $scope.menuEnabled = ["true", "false"];
-    $scope.searchDay = new Date();
+
+    $scope.getMenuDay = function (menu) {
+        if (menu.date !== null) {
+            return menu.date;
+        }
+
+        return DAY_OF_WEEK[menu.dayOfWeek];
+    };
 
     $scope.createMenu = function () {
-        common.showCreateMenu('createMenu', null, function (result) {
+        common.showMenuInfo('createMenu', null, $scope.selectedRestaurant.id, function (result) {
             if (result) {
-                console.log('save button!');
-                console.log(result);
                 //$scope.searchParams.colors = result;
                 //$scope.searchParams.flatColors = getColorTags(result);
             }
         });
-    };
-
-    $scope.menuEnabledChanged = function (id, enabled) {
-        console.log('new valor: ' + enabled);
-        $scope.session.menuEnabledChanged(id, enabled,
-                function (data, status) {
-                    console.log('menu enabled alterado com sucesso');
-                },
-                function (data, status) {
-                    console.log('deu erro ao alterar menu enabled');
-                });
     };
 
     $scope.editMenu = function (m) {
-        common.showCreateMenu('editMenu', m, function (result) {
+        common.showMenuInfo('editMenu', m, $scope.selectedRestaurant.id, function (result) {
             if (result) {
-                console.log('edit successfully!');
-                console.log(result);
                 //$scope.searchParams.colors = result;
                 //$scope.searchParams.flatColors = getColorTags(result);
             }
         });
     };
 
-    $scope.searchMenus = function () {
-        var menu1 = {
-            id: 00123,
-            enabled: "true",
-            name: 'Tasquinha Bracarense 0000',
-            description: 'Frango, batatas fritas e sopa com bebida',
-            price: 5.5,
-            photo: 'image1.jpg',
-            day: 'SEG QUA'
-        };
-        $scope.menus.push(menu1);
+    /* Restaurant management */
+    $scope.searchDay = new Date();
 
-        var menu2 = {
-            id: 43423,
-            enabled: "false",
-            name: 'Mac Donalds 111111',
-            description: 'Feijoada, sopa, pão e bebida',
-            price: 7.0,
-            photo: 'image2.jpg',
-            day: '2016-09-07'
-        };
-        $scope.menus.push(menu2);
-    };
 
     /* End of restaurant management */
 
     /* Account management */
-    //$scope.restaurants = [];
     $scope.rSortType = 'name';
     $scope.rSortReverse = false;
     $scope.status = RESTAURANT_STATUS;

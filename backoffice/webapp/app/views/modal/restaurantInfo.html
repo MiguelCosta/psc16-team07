@@ -3,7 +3,7 @@
         <div class="modal-header" style="background-color: #d95559;">
             <h4 class="modal-title" id="myModalLabel" style="color: white;">{{messageType}}</h4>
         </div>
-        <div class="modal-body">
+        <div class="modal-body" style="padding-bottom: 0px;">
             <div class="form-group">
                 <label for="restaurantName">Name</label>
                 <input type="text" data-ng-model="data.name" class="form-control" id="restaurantName" placeholder="Name" tabindex="1">
@@ -44,23 +44,31 @@
                 <label>Photo</label>
                 <div style="display: table-row;">
                     <div style="display: table-cell;">
-                        <img ng-src="{{data.photo.src}}" alt="Menu Photo" style="width: 100px; height: 100px; border: 1px solid gray;">
+                        <img ng-src="{{data.photo.src}}" alt="Menu Photo" style="width: 200px; height: 200px; border: 1px solid gray;">
                     </div>
                     <div style="margin-left: 10px;">
-                        <button ng-click="addPhoto()"><span ng-show="data.photo.isDefaultPhoto">ADD PHOTO</span><span ng-show="!data.photo.isDefaultPhoto">REPLACE PHOTO</span></button>
+                        <button ng-click="addPhoto()" style="background: white; border: 1px solid gray; position: fixed"><span ng-show="data.photo.isDefaultPhoto">ADD PHOTO</span><span ng-show="!data.photo.isDefaultPhoto">REPLACE PHOTO</span></button>
                     </div>
                 </div>
             </div>
             <div class="form-group">
                 <label>Address</label>
-                <input type="text" data-ng-model="data.address" class="form-control" id="restaurantPhone" placeholder="Address" tabindex="5">
+                <ui-gmap-google-map center='map.center' zoom='map.zoom' draggable="true" events="map.events">
+                    <ui-gmap-marker coords="map.marker.coords" icon="map.marker.icon" idkey="marker-id"></ui-gmap-marker>
+                </ui-gmap-google-map>
+                <input type="text" data-ng-model="data.address" disabled class="form-control" id="restaurantPhone" placeholder="Address" tabindex="5" style="margin-top: 10px;">
             </div>
             <div class="clearfix"></div>
         </div>
 
         <div class="modal-footer">
-            <button type="button" class="btn btn-red caps element100" data-dismiss="modal" data-ng-click="cancel()" tabindex="17">Cancel</button>
-            <button type="button" class="btn btn-blue caps element100" data-ng-click="saveRestaurant()" tabindex="18">Save</button>
+            <div style="text-align: center;">
+                <label data-ng-show='errorMessage !== ""'>{{errorMessage}}</label>
+            </div>
+            <div>
+                <button type="button" class="btn btn-red caps element100" data-dismiss="modal" data-ng-click="cancel()" tabindex="17">Cancel</button>
+                <button type="button" class="btn btn-blue caps element100" data-ng-click="saveRestaurant()" tabindex="18">Save</button>
+            </div>
         </div>
     </div>
 </div>

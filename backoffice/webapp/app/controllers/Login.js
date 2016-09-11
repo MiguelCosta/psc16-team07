@@ -4,8 +4,8 @@ myMenu.controller('Login', function ($scope, $rootScope, $location, SessionManag
 
     $scope.session = SessionManager;
     $scope.credentials = {
-        email: "sergio.fil@gmail.com",
-        password: "12345"
+        email: "",
+        password: ""
     };
 
     $scope.status = {

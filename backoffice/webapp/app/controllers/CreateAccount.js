@@ -31,6 +31,11 @@ myMenu.controller('CreateAccount', function ($scope, $rootScope, $location, Sess
      */
     $scope.createAccount = function () {
 
+        if ($scope.data.email === undefined) {
+            $scope.status.error.message = "Invalid email address.";
+            return;
+        }
+
         if ($scope.data.password !== $scope.data.confirmPassword) {
             $scope.status.error.message = "Password and Confirm Password don't match.";
             return;

@@ -20,10 +20,10 @@ myMenu.factory('common', function ($modal) {
 
             modalInstance.result.then(onResultCallback);
         },
-        showCreateMenu: function (recType, recMenu, onResultCallback) {
+        showMenuInfo: function (recType, recMenu, recRestaurantId, onResultCallback) {
             var modalInstance = $modal.open({
-                templateUrl: 'app/views/modal/createMenu.html',
-                controller: 'CreateMenu',
+                templateUrl: 'app/views/modal/menuInfo.html',
+                controller: 'MenuInfo',
                 keyboard: false,
                 backdrop: 'static',
                 resolve: {
@@ -32,6 +32,9 @@ myMenu.factory('common', function ($modal) {
                     },
                     menu: function () {
                         return recMenu;
+                    },
+                    restaurantId: function () {
+                        return recRestaurantId;
                     }
                 }
             });

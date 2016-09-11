@@ -1,4 +1,4 @@
-var myMenu = angular.module('myMenu', ['ngRoute', 'ngCookies', 'ngGrid', 'ui.bootstrap', 'ui.sortable', 'ngMaterial', 'ngMessages']).run(function ($rootScope, $timeout) {
+var myMenu = angular.module('myMenu', ['ngRoute', 'ngCookies', 'ngGrid', 'ui.bootstrap', 'ui.sortable', 'ngMaterial', 'ngMessages', 'uiGmapgoogle-maps']).run(function ($rootScope, $timeout) {
 
 });
 

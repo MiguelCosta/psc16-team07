@@ -1,9 +1,49 @@
 var myMenu = myMenu || {};
 
-myMenu.controller('RestaurantInfo', function ($scope, $filter, $modalInstance, SessionManager, BackofficeResource, RESTAURANT_TYPE, type, restaurant) {
+myMenu.controller('RestaurantInfo', function ($scope, $filter, $modalInstance, SessionManager, BackofficeResource, SERVER_ENDPOINT, RESTAURANT_TYPE, type, restaurant) {
 
+    $scope.map = {
+        center: {
+            latitude: 41.1484,
+            longitude: -8.6106
+        },
+        zoom: 16,
+        marker: {
+            coords: {
+                latitude: 41.1484,
+                longitude: -8.6106
+            }
+        },
+        events: {
+            click: function (map, eventName, originalEventArgs) {
+                var e = originalEventArgs[0];
+                var lat = e.latLng.lat(), lon = e.latLng.lng();
+                var marker = {
+                    coords: {
+                        latitude: lat,
+                        longitude: lon
+                    }
+                };
+                $scope.map.marker = marker;
+
+                BackofficeResource.getAddress(marker.coords.latitude, marker.coords.longitude,
+                        function (data) {
+                            $scope.data.address = data.results[0].formatted_address;
+                            // TODO: actualizar a lista do restaurante que foi editado, na view
+                        },
+                        function (data, status) {
+                            console.log('Error gettings address');
+                        });
+
+                $scope.$apply();
+            }
+        }
+    };
+
+    $scope.session = SessionManager;
     $scope.messageType = "Create Restaurant";
     $scope.restaurantType = RESTAURANT_TYPE;
+    $scope.errorMessage = "";
 
     $scope.data = {
         name: "",
@@ -22,15 +62,18 @@ myMenu.controller('RestaurantInfo', function ($scope, $filter, $modalInstance, S
     };
 
     $scope.init = function () {
-        if (type === 'createRestaurant') {
-
-        } else if (type === 'editRestaurant') {
+        if (type === 'editRestaurant') {
             $scope.messageType = 'Edit Restaurant Information';
             $scope.data.name = restaurant.name;
             $scope.data.email = restaurant.email;
             $scope.data.description = restaurant.description;
             $scope.data.type = $scope.restaurantType[restaurant.type];
             $scope.data.phoneNumber = restaurant.phoneNumber;
+            $scope.data.address = restaurant.address;
+            $scope.map.center.latitude = restaurant.latitude;
+            $scope.map.center.longitude = restaurant.longitude;
+            $scope.map.marker.coords.latitude = restaurant.latitude;
+            $scope.map.marker.coords.longitude = restaurant.longitude;
 
             if (restaurant.schedule !== null) {
                 //var tmpSchedule = '04:17 AM - 20:31 PM';
@@ -38,14 +81,30 @@ myMenu.controller('RestaurantInfo', function ($scope, $filter, $modalInstance, S
                 $scope.data.schedule.opening = $scope.convertHourToDateFormat(array[0]);
                 $scope.data.schedule.close = $scope.convertHourToDateFormat(array[1]);
             }
+
+            var menuImage = SERVER_ENDPOINT + "/api/Restaurants/" + restaurant.id + "/Photo";
+            BackofficeResource.getImage(menuImage,
+                    function (data) {
+                        $scope.data.photo.src = menuImage;
+                        $scope.data.photo.isDefaultPhoto = false;
+                    },
+                    function (data, status) {
+                        // image not available
+                    });
+        } else {
+            BackofficeResource.getAddress($scope.map.marker.coords.latitude, $scope.map.marker.coords.longitude,
+                    function (data) {
+                        if (data.results.length > 0) {
+                            $scope.data.address = data.results[0].formatted_address;
+                        }
+                    },
+                    function (data, status) {
+                        // error getting the address
+                    });
         }
     };
 
     $scope.cancel = function () {
-
-        //var schedule = $scope.extractFormatedDate($scope.data.schedule.opening) + ' - ' + $scope.extractFormatedDate($scope.data.schedule.close);
-        //console.log(schedule);
-
         $modalInstance.close(null);
     };
 
@@ -57,39 +116,34 @@ myMenu.controller('RestaurantInfo', function ($scope, $filter, $modalInstance, S
             name: $scope.data.name,
             phoneNumber: $scope.data.phoneNumber,
             schedule: $scope.extractFormatedDate($scope.data.schedule.opening) + ' - ' + $scope.extractFormatedDate($scope.data.schedule.close),
-            type: $scope.data.type.id
+            type: $scope.data.type.id,
+            address: $scope.data.address,
+            latitude: $scope.map.marker.coords.latitude,
+            longitude: $scope.map.marker.coords.longitude
         };
 
+        $scope.errorMessage = "";
         if (type === 'createRestaurant') {
 
-            BackofficeResource.createRestaurant(newRestaurant,
+            BackofficeResource.createRestaurant($scope.session.getToken(), newRestaurant,
                     function (data) {
-                        // TODO: Data vai receber um restaurante de volta, guarda-o para actualizar à lista
-                        //$scope.restaurants.push(restaurant);
+                        $modalInstance.close(true);
                     },
                     function (data, status) {
-                        console.log('Error ao criar restaurante');
-                        // TODO: mostrar erro ao ir buscar restaurantes
-                        // TODO: filtrar para mostrar só os restaurantes desta conta
+                        $scope.errorMessage = "Error creating restaurant. Try again later.";
                     });
 
         } else if (type === 'editRestaurant') {
 
-            BackofficeResource.editRestaurant(restaurant.id, newRestaurant,
+            BackofficeResource.editRestaurant($scope.session.getToken(), restaurant.id, newRestaurant,
                     function (data) {
-                        // TODO: actualizar a lista do restaurante que foi editado, na view
+                        $modalInstance.close(true);
                     },
                     function (data, status) {
-                        console.log('Error ao editar restaurante');
-                        // TODO: mostrar erro ao ir buscar restaurantes
-                        // TODO: filtrar para mostrar só os restaurantes desta conta
+                        $scope.errorMessage = "Error editing restaurant. Try again later";
                     });
 
         }
-
-        // TODO: se der erro, fica na modal e mostra o erro
-
-        $modalInstance.close($scope.abc);
     };
 
     $scope.extractFormatedDate = function (date) {

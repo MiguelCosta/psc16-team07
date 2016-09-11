@@ -64,27 +64,21 @@ myMenu.factory('BackofficeResource', function ($http, SERVER_ENDPOINT, AUTH_HEAD
         getMenus: function (restaurantId, onSuccessCallback, onErrorCallback) {
             var request = $http({
                 method: 'GET',
-                url: SERVER_ENDPOINT + '/api/Restaurants',
+                url: SERVER_ENDPOINT + '/api/Restaurants/' + restaurantId + '/Dishes',
                 headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                transformRequest: function (obj) {
-                    var str = [];
-                    for (var p in obj)
-                        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-                    return str.join("&");
+                    'Content-Type': 'application/json'
                 }
             });
             request.success(onSuccessCallback);
             request.error(onErrorCallback);
         },
-        createRestaurant: function (restaurant, onSuccessCallback, onErrorCallback) {
+        createRestaurant: function (token, restaurant, onSuccessCallback, onErrorCallback) {
             var request = $http({
                 method: 'POST',
                 url: SERVER_ENDPOINT + '/api/Restaurants',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
-                    'Authorization': 'bearer uDyeGBV0xTkWQevYxCDD-iP1vwsX_FDpmMfmqFOZ5ikzgk6ivAotO1gFEtuplDkBlpV7_owxvH3rPKKnkzyuSzI0d4gxTHPrxdlB7TcmeGYDFPAKLGNXi-AxBijto8inwnTdtTKdxESgIN-V3btZnPGreX9PUzq5r2KUDWPFq1lep5ymi0DW1Y6D4ycCgXapSXtXLJDHlc6SEvWkoypddWrp4omxnvIr4Lyu7NitcJrjMx9NTPKt0nXBO1k6hdZAKk-qk3HNbu-L8-8LxqLNAjZDGzqwcVMOkYP1MdrVV6fzi9uxKxRVLjQGTfNDz_NQ8ShXDt9Uggv2Hc-z3JejHrYmp-25u-v0prOHLOTH2sexQ28OisRKc15kn-ah9dAHKqpi-uiBqdecQlr9as89imQ0kFr5srNPk0u1wXsIzDP-mD9GsRbY6-WH_WEqsSyEXLoVOlSIGqatKJrrar5SLIIglL6f0aKKiRWyd7gs8WX5XqWrSG-flfS8Bn-WZOSx'
+                    'Authorization': 'bearer ' + token
                 },
                 transformRequest: function (obj) {
                     var str = [];
@@ -93,11 +87,11 @@ myMenu.factory('BackofficeResource', function ($http, SERVER_ENDPOINT, AUTH_HEAD
                     return str.join("&");
                 },
                 data: {
-                    address: 'Rua Almeida Garrete, 151 A, Porto 4050-241, Portugal',
+                    address: restaurant.address,
                     description: restaurant.description,
                     email: restaurant.email,
-                    latitude: 0.1,
-                    longiture: 0.2,
+                    latitude: restaurant.latitude,
+                    longitude: restaurant.longitude,
                     name: restaurant.name,
                     phoneNumber: restaurant.phoneNumber,
                     photo: '',
@@ -108,12 +102,13 @@ myMenu.factory('BackofficeResource', function ($http, SERVER_ENDPOINT, AUTH_HEAD
             request.success(onSuccessCallback);
             request.error(onErrorCallback);
         },
-        editRestaurant: function (restaurantId, restaurant, onSuccessCallback, onErrorCallback) {
+        editRestaurant: function (token, restaurantId, restaurant, onSuccessCallback, onErrorCallback) {
             var request = $http({
                 method: 'PUT',
                 url: SERVER_ENDPOINT + '/api/Restaurants/' + restaurantId,
                 headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'Authorization': 'bearer ' + token
                 },
                 transformRequest: function (obj) {
                     var str = [];
@@ -122,11 +117,11 @@ myMenu.factory('BackofficeResource', function ($http, SERVER_ENDPOINT, AUTH_HEAD
                     return str.join("&");
                 },
                 data: {
-                    address: 'Rua Almeida Garrete, 151 A, Porto 4050-241, Portugal',
+                    address: restaurant.address,
                     description: restaurant.description,
                     email: restaurant.email,
-                    latitude: 0.1,
-                    longiture: 0.2,
+                    latitude: restaurant.latitude,
+                    longitude: restaurant.longitude,
                     name: restaurant.name,
                     phoneNumber: restaurant.phoneNumber,
                     photo: '',
@@ -137,24 +132,14 @@ myMenu.factory('BackofficeResource', function ($http, SERVER_ENDPOINT, AUTH_HEAD
             request.success(onSuccessCallback);
             request.error(onErrorCallback);
         },
-        changeRestaurantStatus: function (restaurantId, status, onSuccessCallback, onErrorCallback) {
-
-            var data = {
-                data: {
-                    token: "asdasdsad",
-                    restaurantId: 12332
-                }
-            };
-            //onErrorCallback(data);
-            onSuccessCallback(data);
-            return;
-
+        createMenu: function (token, menu, onSuccessCallback, onErrorCallback) {
 
             var request = $http({
                 method: 'POST',
-                url: SERVER_ENDPOINT + '/Token',
+                url: SERVER_ENDPOINT + '/api/Dishes',
                 headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'Authorization': 'bearer ' + token
                 },
                 transformRequest: function (obj) {
                     var str = [];
@@ -163,32 +148,27 @@ myMenu.factory('BackofficeResource', function ($http, SERVER_ENDPOINT, AUTH_HEAD
                     return str.join("&");
                 },
                 data: {
-                    restaurantId: restaurantId,
-                    status: status,
-                    grant_type: 'password'
+                    active: true,
+                    //date: menu.date,
+                    dayOfWeek: menu.dayOfWeek,
+                    description: menu.description,
+                    name: menu.name,
+                    photo: "photo1.jpg",
+                    price: menu.price,
+                    restaurantId: menu.restaurantId
                 }
             });
             request.success(onSuccessCallback);
             request.error(onErrorCallback);
         },
-        menuEnabledChanged: function (menuId, enabled, onSuccessCallback, onErrorCallback) {
-
-            var data = {
-                data: {
-                    token: "asdasdsad",
-                    restaurantId: 12332
-                }
-            };
-            //onErrorCallback(data);
-            onSuccessCallback(data);
-            return;
-
+        editMenu: function (token, menu, dishId, onSuccessCallback, onErrorCallback) {
 
             var request = $http({
                 method: 'POST',
-                url: SERVER_ENDPOINT + '/Token',
+                url: SERVER_ENDPOINT + '/api/Dishes/' + dishId,
                 headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'Authorization': 'bearer ' + token
                 },
                 transformRequest: function (obj) {
                     var str = [];
@@ -197,32 +177,36 @@ myMenu.factory('BackofficeResource', function ($http, SERVER_ENDPOINT, AUTH_HEAD
                     return str.join("&");
                 },
                 data: {
-                    restaurantId: restaurantId,
-                    status: status,
-                    grant_type: 'password'
+                    active: true,
+                    //date: menu.date,
+                    dayOfWeek: menu.dayOfWeek,
+                    description: menu.description,
+                    name: menu.name,
+                    photo: "photo1.jpg",
+                    price: menu.price,
+                    restaurantId: menu.restaurantId
                 }
             });
             request.success(onSuccessCallback);
             request.error(onErrorCallback);
         },
-        saveMenu: function (menu, onSuccessCallback, onErrorCallback) {
-
+        getImage: function (imageUrl, onSuccessCallback, onErrorCallback) {
             var request = $http({
-                method: 'POST',
-                url: SERVER_ENDPOINT + '/Token',
+                method: 'GET',
+                url: imageUrl,
                 headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                transformRequest: function (obj) {
-                    var str = [];
-                    for (var p in obj)
-                        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-                    return str.join("&");
-                },
-                data: {
-                    restaurantId: restaurantId,
-                    status: status,
-                    grant_type: 'password'
+                    'Content-Type': 'application/json'
+                }
+            });
+            request.success(onSuccessCallback);
+            request.error(onErrorCallback);
+        },
+        getAddress: function (lat, lon, onSuccessCallback, onErrorCallback) {
+            var request = $http({
+                method: 'GET',
+                url: 'http://maps.google.com/maps/api/geocode/json?latlng=' + lat + ',' + lon + '&sensor=false',
+                headers: {
+                    'Content-Type': 'application/json'
                 }
             });
             request.success(onSuccessCallback);
