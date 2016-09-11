@@ -54,6 +54,10 @@ namespace MyMenu.Api.Controllers
         public ISecureDataFormat<AuthenticationTicket> AccessTokenFormat { get; private set; }
 
         // GET api/Account/UserInfo
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         [HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
         [Route("UserInfo")]
         public UserInfoViewModel GetUserInfo()
@@ -69,6 +73,10 @@ namespace MyMenu.Api.Controllers
         }
 
         // POST api/Account/Logout
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         [Route("Logout")]
         public IHttpActionResult Logout()
         {
@@ -77,6 +85,12 @@ namespace MyMenu.Api.Controllers
         }
 
         // GET api/Account/ManageInfo?returnUrl=%2F&generateState=true
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="returnUrl"></param>
+        /// <param name="generateState"></param>
+        /// <returns></returns>
         [Route("ManageInfo")]
         public async Task<ManageInfoViewModel> GetManageInfo(string returnUrl, bool generateState = false)
         {
@@ -117,6 +131,11 @@ namespace MyMenu.Api.Controllers
         }
 
         // POST api/Account/ChangePassword
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [Route("ChangePassword")]
         public async Task<IHttpActionResult> ChangePassword(ChangePasswordBindingModel model)
         {
@@ -137,6 +156,11 @@ namespace MyMenu.Api.Controllers
         }
 
         // POST api/Account/SetPassword
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [Route("SetPassword")]
         public async Task<IHttpActionResult> SetPassword(SetPasswordBindingModel model)
         {
@@ -156,6 +180,11 @@ namespace MyMenu.Api.Controllers
         }
 
         // POST api/Account/AddExternalLogin
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [Route("AddExternalLogin")]
         public async Task<IHttpActionResult> AddExternalLogin(AddExternalLoginBindingModel model)
         {
@@ -194,6 +223,11 @@ namespace MyMenu.Api.Controllers
         }
 
         // POST api/Account/RemoveLogin
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [Route("RemoveLogin")]
         public async Task<IHttpActionResult> RemoveLogin(RemoveLoginBindingModel model)
         {
@@ -223,6 +257,12 @@ namespace MyMenu.Api.Controllers
         }
 
         // GET api/Account/ExternalLogin
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="provider"></param>
+        /// <param name="error"></param>
+        /// <returns></returns>
         [OverrideAuthentication]
         [HostAuthentication(DefaultAuthenticationTypes.ExternalCookie)]
         [AllowAnonymous]
@@ -280,6 +320,12 @@ namespace MyMenu.Api.Controllers
         }
 
         // GET api/Account/ExternalLogins?returnUrl=%2F&generateState=true
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="returnUrl"></param>
+        /// <param name="generateState"></param>
+        /// <returns></returns>
         [AllowAnonymous]
         [Route("ExternalLogins")]
         public IEnumerable<ExternalLoginViewModel> GetExternalLogins(string returnUrl, bool generateState = false)
@@ -322,10 +368,10 @@ namespace MyMenu.Api.Controllers
 
         // POST api/Account/Register
         /// <summary>
-        /// Registar um novo utilizador
+        /// Create a new user
         /// </summary>
-        /// <remarks>Se o email já existier não funciona</remarks>
-        /// <param name="model">Informação do utilizador</param>
+        /// <remarks></remarks>
+        /// <param name="model">user info</param>
         /// <returns></returns>
         [AllowAnonymous]
         [ResponseType(typeof(ApplicationUser))]
@@ -352,6 +398,11 @@ namespace MyMenu.Api.Controllers
         }
 
         // POST api/Account/RegisterExternal
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [OverrideAuthentication]
         [HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
         [Route("RegisterExternal")]

@@ -8,5 +8,7 @@ namespace MyMenu.Api.Dtos
         public IEnumerable<DishModel> Dishes { get; set; }
 
         public IEnumerable<RestaurantModel> Restaurants { get; set; }
+
+        public SearchFilterDto Filter { get; set; }
     }
 }

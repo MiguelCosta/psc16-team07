@@ -481,12 +481,83 @@
             </summary>
             <param name="appDataPath">The physical path to XML document.</param>
         </member>
+        <member name="M:MyMenu.Api.Controllers.AccountController.GetUserInfo">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MyMenu.Api.Controllers.AccountController.Logout">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MyMenu.Api.Controllers.AccountController.GetManageInfo(System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="returnUrl"></param>
+            <param name="generateState"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyMenu.Api.Controllers.AccountController.ChangePassword(MyMenu.Api.Models.ChangePasswordBindingModel)">
+            <summary>
+            
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyMenu.Api.Controllers.AccountController.SetPassword(MyMenu.Api.Models.SetPasswordBindingModel)">
+            <summary>
+            
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyMenu.Api.Controllers.AccountController.AddExternalLogin(MyMenu.Api.Models.AddExternalLoginBindingModel)">
+            <summary>
+            
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyMenu.Api.Controllers.AccountController.RemoveLogin(MyMenu.Api.Models.RemoveLoginBindingModel)">
+            <summary>
+            
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyMenu.Api.Controllers.AccountController.GetExternalLogin(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="provider"></param>
+            <param name="error"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyMenu.Api.Controllers.AccountController.GetExternalLogins(System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="returnUrl"></param>
+            <param name="generateState"></param>
+            <returns></returns>
+        </member>
         <member name="M:MyMenu.Api.Controllers.AccountController.Register(MyMenu.Api.Models.RegisterBindingModel)">
             <summary>
-            Registar um novo utilizador
+            Create a new user
             </summary>
-            <remarks>Se o email já existier não funciona</remarks>
-            <param name="model">Informação do utilizador</param>
+            <remarks></remarks>
+            <param name="model">user info</param>
+            <returns></returns>
+        </member>
+        <member name="M:MyMenu.Api.Controllers.AccountController.RegisterExternal(MyMenu.Api.Models.RegisterExternalBindingModel)">
+            <summary>
+            
+            </summary>
+            <param name="model"></param>
             <returns></returns>
         </member>
         <member name="M:MyMenu.Api.Controllers.DishesController.Get(System.Int32)">

@@ -1,24 +1,50 @@
 ﻿<div class="jumbotron">
     <h1>MyMenu</h1>
     <p class="lead">WebApi to use MyMenu</p>
-    <p><a href="@Url.Action("Index", "Help")" class="btn btn-primary btn-lg">Documentação &raquo;</a></p>
+    <p><a href="@Url.Action("Index", "Help")" class="btn btn-primary btn-lg">Documentation &raquo;</a></p>
 </div>
-<div class="row">
-    <div class="col-md-4">
-        <h2>Login</h2>
-        <p>Explicar como fazer login</p>
-        <p>Endpoint: api/Token</p>
-        <p>Body: grant_type=password&username={username}&password={password}</p>
-        <p><a class="btn btn-default" href="#">Mais &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Pedidos autenticados</h2>
-        <p>Header: Authorization Bearer {{token}}</p>
-        <p><a class="btn btn-default" href="#">Mais &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Pedidos não atenticados</h2>
-        <p></p>
-        <p><a class="btn btn-default" href="#">Mais &raquo;</a></p>
-    </div>
-</div>
+
+<h2>Login</h2>
+<pre>
+POST /Token HTTP/1.1
+Host: mymenuapi.azurewebsites.net
+
+grant_type=password&username=[username]&password=[password]
+</pre>
+
+<h2>Unauthenticated Requests (Example)</h2>
+<pre>
+POST /api/Search HTTP/1.1
+Host: mymenuapi.azurewebsites.net
+x-latitude: 38,7025
+x-longitude: -9,2294
+x-range: 1000
+
+Content-Type: application/json
+{
+  "keywords": ["pasta"],
+  "maxPrice": 50.0,
+  "types": []
+}
+</pre>
+
+<h2>Authenticated Requests (Example)</h2>
+<pre>
+POST /api/Restaurants HTTP/1.1
+Host: mymenuapi.azurewebsites.net
+Authorization: bearer [token]
+
+Content-Type: application/json
+{ 
+  "address": "sample string 1",
+  "description": "sample string 2",
+  "email": "sample string 3",
+  "latitude": 4.0,
+  "longitude": 5.0,
+  "name": "sample string 6",
+  "phoneNumber": "sample string 7",
+  "photo": "sample string 8",
+  "schedule": "sample string 9",
+  "type": 0
+}
+</pre>

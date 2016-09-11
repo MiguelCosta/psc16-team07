@@ -52,6 +52,7 @@ namespace MyMenu.Api.Controllers
             var restIds = results.Restaurants.Select(r => r.Id);
 
             results.Dishes = await _repo.Dishes.GetSearchRefineAsync(restIds, restFilter);
+            results.Filter = filter;
 
             return Ok(results);
         }
@@ -80,7 +81,9 @@ namespace MyMenu.Api.Controllers
 
             var restIds = results.Restaurants.Select(r => r.Id);
 
-            results.Dishes = await _repo.Dishes.GetAllAsync(restIds);
+            filter.Keywords.Add(query);
+
+            results.Dishes = await _repo.Dishes.GetSearchRefineAsync(restIds, filter);
 
             return Ok(results);
         }
