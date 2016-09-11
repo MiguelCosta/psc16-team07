@@ -3,6 +3,7 @@ using MyMenu.Api.Models;
 using MyMenu.Api.Models.Infrastructure;
 using System.Collections.Generic;
 using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
@@ -41,13 +42,38 @@ namespace MyMenu.Api.Controllers
         }
 
         /// <summary>
+        /// Get restaurant photo
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("api/Restaurants/{id}/Photo")]
+        public async Task<HttpResponseMessage> Photo(int id)
+        {
+            var rest = await _repo.Restaurants.FindAsync(id);
+            if(rest == null)
+            {
+                return new HttpResponseMessage(HttpStatusCode.NotFound);
+            }
+
+            if(string.IsNullOrWhiteSpace(rest.Photo))
+            {
+                return new HttpResponseMessage(HttpStatusCode.NoContent);
+            }
+
+            var result = await Helpers.ResponseHelper.GenerateResponseImage($"~/Uploads/Restaurants/{rest.Photo}");
+
+            return result;
+        }
+
+        /// <summary>
         /// Create a restaurant
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
         [Authorize]
         [ResponseType(typeof(RestaurantModel))]
-        public async Task<IHttpActionResult> Post(RestaurantDto dto)
+        public async Task<IHttpActionResult> Post([FromBody] RestaurantDto dto)
         {
             if(ModelState.IsValid == false)
             {
@@ -82,7 +108,7 @@ namespace MyMenu.Api.Controllers
         /// <returns></returns>
         [Authorize]
         [ResponseType(typeof(RestaurantModel))]
-        public async Task<IHttpActionResult> Put(int id, RestaurantDto dto)
+        public async Task<IHttpActionResult> Put(int id, [FromBody] RestaurantDto dto)
         {
             if(ModelState.IsValid == false)
             {
@@ -93,11 +119,12 @@ namespace MyMenu.Api.Controllers
 
             if(currentRestaurant.Username != User.Identity.Name)
             {
-                return Content(HttpStatusCode.Forbidden, dto);
+                return Content(HttpStatusCode.Forbidden, "This restaurant isn't yours");
             }
 
             var restaurant = new RestaurantModel
             {
+                Id = currentRestaurant.Id,
                 Address = dto.Address,
                 Description = dto.Description,
                 Email = dto.Email,
@@ -113,7 +140,7 @@ namespace MyMenu.Api.Controllers
 
             var newRestaurant = await _repo.Restaurants.EditAsync(id, restaurant);
 
-            return Created($"api/restaurants/{newRestaurant.Id}", newRestaurant);
+            return Ok(newRestaurant);
         }
 
         /// <summary>
@@ -130,7 +157,7 @@ namespace MyMenu.Api.Controllers
                 return BadRequest();
             }
 
-            var result = await _repo.Restaurants.SearchAsync(search);
+            var result = await _repo.Restaurants.SearchAsync(new Models.Filters.RestaurantFilter(search));
 
             return Ok(result);
         }

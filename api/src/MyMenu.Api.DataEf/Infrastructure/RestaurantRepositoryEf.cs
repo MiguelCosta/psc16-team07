@@ -54,20 +54,18 @@ namespace MyMenu.Api.DataEf.Infrastructure
             return await _context.Restaurants.ProjectTo<RestaurantModel>().ToListAsync();
         }
 
-        public async Task<IEnumerable<RestaurantModel>> SearchAsync(string search)
+        public async Task<IEnumerable<RestaurantModel>> SearchAsync(Models.Filters.RestaurantFilter filter)
         {
-            var filter = new Models.Filters.RestaurantFilter(search);
-
-            var predicate = PredicateBuilder.New<Restaurant>(false);
+            var predicate = PredicateBuilder.New<Restaurant>(true);
 
             if(string.IsNullOrWhiteSpace(filter.DishName) == false)
             {
-                // todo: impletmentar DishModel
+                predicate = predicate.Or(r => r.Dishes.Any(d => d.Name.Contains(filter.DishName)));
             }
 
-            if(filter.RestaurantType.Any())
+            if(filter.RestaurantTypes.Any())
             {
-                predicate = predicate.Or(r => filter.RestaurantType.Contains(r.Type));
+                predicate = predicate.Or(r => filter.RestaurantTypes.Contains(r.Type));
             }
 
             if(string.IsNullOrWhiteSpace(filter.RestaurantName) == false)
@@ -75,11 +73,108 @@ namespace MyMenu.Api.DataEf.Infrastructure
                 predicate = predicate.Or(r => r.Name.Contains(filter.RestaurantName));
             }
 
+            if(filter.Keywords.Any())
+            {
+                foreach(var word in filter.Keywords)
+                {
+                    predicate = predicate.Or(r => r.Name.Contains(word));
+                    predicate = predicate.Or(r => r.Dishes.Any(d => d.Name.Contains(word)));
+                }
+            }
+
+            if(filter.MaxPrice.HasValue)
+            {
+                predicate = predicate.Or(r => r.Dishes.Any(d => d.Price <= filter.MaxPrice.Value));
+            }
+
+            //if(filter.Latitude > 0 && filter.Longitude > 0 && filter.Range > 0)
+            //{
+            //    // http://stackoverflow.com/questions/2234204/latitude-longitude-find-nearest-latitude-longitude-complex-sql-or-complex-calc
+            //    //SELECT latitude, longitude, SQRT(
+            //    //    POW(69.1 * (latitude - [startlat]), 2) +
+            //    //    POW(69.1 * ([startlng] - longitude) 
+            //    //       * COS(latitude / 57.3), 2)
+            //    // ) AS distance
+            //    //FROM TableName HAVING distance < 25 ORDER BY distance;
+
+            //    predicate = predicate.Or(
+            //        r =>
+            //        Math.Sqrt(
+            //            Math.Pow(69.1 * (Convert.ToDouble(r.Latitude) - Convert.ToDouble(filter.Latitude)), 2) +
+            //            Math.Pow(69.1 * (Convert.ToDouble(filter.Longitude) - Convert.ToDouble(r.Longitude))
+            //                * Math.Cos(Convert.ToDouble(r.Latitude) / 57.3), 2)
+            //        ) <= filter.Range
+            //    );
+            //}
+
             var results = await _context.Restaurants
                 .AsExpandable()
                 .AsNoTracking()
                 .Where(predicate)
                 .ToListAsync();
+
+            // TODO: tentar colocar diretamente na query
+            if(filter.Latitude != 0 && filter.Longitude != 0 && filter.Range > 0)
+            {
+                results = results.Where(r =>
+                    Math.Sqrt(
+                                Math.Pow(69.1 * (Convert.ToDouble(r.Latitude) - Convert.ToDouble(filter.Latitude)), 2) +
+                                Math.Pow(69.1 * (Convert.ToDouble(filter.Longitude) - Convert.ToDouble(r.Longitude))
+                                    * Math.Cos(Convert.ToDouble(r.Latitude) / 57.3), 2)
+                            ) <= filter.Range
+                    )
+                .ToList();
+            }
+
+            return Mapper.Map<IEnumerable<RestaurantModel>>(results);
+        }
+
+        public async Task<IEnumerable<RestaurantModel>> SearchRefineAsync(Models.Filters.RestaurantFilter filter)
+        {
+            var predicateKeywords = PredicateBuilder.New<Restaurant>(true);
+            if(filter.Keywords.Any())
+            {
+                foreach(var word in filter.Keywords)
+                {
+                    predicateKeywords = predicateKeywords.Or(r => r.Name.ToLower().Contains(word.ToLower()));
+                    predicateKeywords = predicateKeywords.Or(r => r.Description.ToLower().Contains(word.ToLower()));
+                    predicateKeywords = predicateKeywords.Or(r => r.Dishes.Any(d => d.Name.ToLower().Contains(word.ToLower())));
+                    predicateKeywords = predicateKeywords.Or(r => r.Dishes.Any(d => d.Description.ToLower().Contains(word.ToLower())));
+                }
+            }
+
+            var predicateTypes = PredicateBuilder.New<Restaurant>(true);
+            if(filter.RestaurantTypes.Any())
+            {
+                predicateTypes = predicateTypes.Or(r => filter.RestaurantTypes.Contains(r.Type));
+            }
+
+            var predicatePrice = PredicateBuilder.New<Restaurant>(true);
+            if(filter.MaxPrice.HasValue)
+            {
+                predicatePrice = predicatePrice.Or(r => r.Dishes.Any(d => d.Price <= filter.MaxPrice.Value));
+            }
+
+            var predicates = predicateKeywords.And(predicateTypes).And(predicatePrice);
+
+            var results = await _context.Restaurants
+                .AsExpandable()
+                .AsNoTracking()
+                .Where(predicates)
+                .ToListAsync();
+
+            // TODO: tentar colocar diretamente na query
+            if(filter.Latitude != 0 && filter.Longitude != 0 && filter.Range > 0)
+            {
+                results = results.Where(r =>
+                    Math.Sqrt(
+                                Math.Pow(69.1 * (Convert.ToDouble(r.Latitude) - Convert.ToDouble(filter.Latitude)), 2) +
+                                Math.Pow(69.1 * (Convert.ToDouble(filter.Longitude) - Convert.ToDouble(r.Longitude))
+                                    * Math.Cos(Convert.ToDouble(r.Latitude) / 57.3), 2)
+                            ) <= filter.Range
+                    )
+                .ToList();
+            }
 
             return Mapper.Map<IEnumerable<RestaurantModel>>(results);
         }
