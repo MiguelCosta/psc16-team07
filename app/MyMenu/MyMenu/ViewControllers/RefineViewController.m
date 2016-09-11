@@ -222,7 +222,7 @@
     
     SearchManager * searchManager = [[SearchManager alloc] initWithDelegate:self];
     
-    NSDictionary * dict = [NSDictionary dictionaryWithObjectsAndKeys:self.keywordArray, @"keywords", [NSNumber numberWithFloat:self.priceSlider.value], @"maxPrice", self.typesArray, @"types", nil];
+    NSDictionary * dict = [NSDictionary dictionaryWithObjectsAndKeys:self.keywordArray, @"keywords", [NSString stringWithFormat:@"%0.2f", self.priceSlider.value], @"maxPrice", self.typesArray, @"types", nil];
     
     [searchManager refineSearch:dict withLatitude:nil longitude:nil andRange:[NSString stringWithFormat:@"%f", self.distanceSlider.value]];
     

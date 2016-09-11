@@ -129,6 +129,8 @@
 
 - (void)refineWithResults:(NSArray *)results {
     
+    self.resultsArray = [NSArray arrayWithArray:results];
+    
     if (self.resultsArray.count >=1) {
         self.restaurantArray = [NSArray arrayWithArray:[self.resultsArray objectAtIndex:0]];
         

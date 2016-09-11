@@ -17,7 +17,7 @@
 
 - (void)searchWithKeyword:(NSString *)keyword {
     
-    [self getData:[NSString stringWithFormat:HTTPSearch, keyword] successBlock:^(id object) {
+    [self getData:[NSString stringWithFormat:HTTPSearch, [keyword stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]] successBlock:^(id object) {
         
         NSArray * resultsRestaurants = [self responseArrayFromJSONObject:[object valueForKey:@"restaurants"] objectsWithClass:[Restaurant class]];
         NSArray * resultsDishes = [self responseArrayFromJSONObject:[object valueForKey:@"dishes"] objectsWithClass:[Dish class]];
