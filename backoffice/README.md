@@ -23,3 +23,11 @@ MyMenu Backoffice was developed using the AngularJS framework.
 - [Angular Material](https://material.angularjs.org/latest/)
 - [Bootstrap 3.3.2](http://getbootstrap.com)
 - [Font Awesome](https://github.com/FortAwesome/Font-Awesome)
+
+### Prints
+
+![Login](Images/Login.png)
+![Dashboard](Images/Dashboard.png)
+![RestaurantInfo](Images/RestaurantInfo.png)
+![MenuInfo](Images/MenuInfo.png)
+![CreateAccount](Images/CreateAccount.png)
