@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11198.2" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MapViewController">
+            <connections>
+                <outlet property="mapView" destination="i0e-Qi-O2P" id="RUU-eH-qFc"/>
+                <outlet property="view" destination="iN0-l3-epB" id="OqL-vk-ECY"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="i0e-Qi-O2P"/>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zWF-j8-nto">
+                    <frame key="frameInset" minX="314" minY="22" width="53" height="45"/>
+                    <state key="normal" image="ic-refine"/>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="i0e-Qi-O2P" secondAttribute="trailing" id="FGl-YM-gNM"/>
+                <constraint firstItem="zWF-j8-nto" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="22" id="HGU-Ld-NJc"/>
+                <constraint firstAttribute="trailing" secondItem="zWF-j8-nto" secondAttribute="trailing" constant="8" id="LGd-CI-vXj"/>
+                <constraint firstAttribute="bottom" secondItem="i0e-Qi-O2P" secondAttribute="bottom" id="mOX-zU-mpD"/>
+                <constraint firstItem="i0e-Qi-O2P" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="nri-y3-3Yh"/>
+                <constraint firstItem="i0e-Qi-O2P" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="s0a-t2-SFd"/>
+            </constraints>
+            <point key="canvasLocation" x="32.5" y="70.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ic-refine" width="64" height="64"/>
+    </resources>
+</document>
