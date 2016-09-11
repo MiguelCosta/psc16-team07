@@ -1,0 +1,74 @@
+<div id="modal-colorpicker" class="modal-dialog" style="margin: 0px auto;">
+    <div class="modal-content">
+        <div class="modal-header" style="background-color: #d95559;">
+            <h4 class="modal-title" id="myModalLabel" style="color: white;">{{messageType}}</h4>
+        </div>
+        <div class="modal-body" style="padding-bottom: 0px;">
+            <div class="form-group">
+                <label for="restaurantName">Name</label>
+                <input type="text" data-ng-model="data.name" class="form-control" id="restaurantName" placeholder="Name" tabindex="1">
+            </div>
+            <div class="form-group">
+                <label for="restaurantEmail">Email</label>
+                <input type="email" data-ng-model="data.email" class="form-control" id="restaurantEmail" placeholder="Email" tabindex="2">
+            </div>
+            <div class="form-group">
+                <label for="restaurantDescription">Description</label>
+                <textarea class="form-control" data-ng-model="data.description" rows="5" id="restaurantDescription" placeholder="Description" tabindex="3"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="restaurantType">Type</label>
+                <select class="form-control" id="restaurantType" chosen data-ng-model="data.type" disable-search="true" data-placeholder="All" no-results-text="'No options available'" data-ng-options="option.name for option in restaurantType track by option.id" tabindex="4">
+                    <option value=""></option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="restaurantPhone">Phone Number</label>
+                <input type="text" data-ng-model="data.phoneNumber" class="form-control" id="restaurantPhone" placeholder="Phone Number" tabindex="5">
+            </div>
+
+            <div class="form-group">
+                <label >Schedule</label>
+                <div id="restaurantSchedule" class="row">
+                    <div class="col-sm-6">
+                        <label style="font-weight: normal; margin-right: 10px;" for="restaurantScheduleOpening">Opening hour:</label>
+                        <input class="form-control" type="time" id="restaurantScheduleOpening" name="input" ng-model="data.schedule.opening" placeholder="HH:mm:ss" min="00:00:00" max="17:00:00" required />
+                    </div>
+                    <div class="col-sm-6">
+                        <label style="font-weight: normal; margin-right: 10px;" for="restaurantScheduleClose">Close hour:</label>
+                        <input class="form-control" type="time" id="restaurantScheduleClose" name="input" ng-model="data.schedule.close" placeholder="HH:mm:ss" min="08:00:00" max="23:59:00" required />
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Photo</label>
+                <div style="display: table-row;">
+                    <div style="display: table-cell;">
+                        <img ng-src="{{data.photo.src}}" alt="Menu Photo" style="width: 200px; height: 200px; border: 1px solid gray;">
+                    </div>
+                    <div style="margin-left: 10px;">
+                        <button ng-click="addPhoto()" style="background: white; border: 1px solid gray; position: fixed"><span ng-show="data.photo.isDefaultPhoto">ADD PHOTO</span><span ng-show="!data.photo.isDefaultPhoto">REPLACE PHOTO</span></button>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Address</label>
+                <ui-gmap-google-map center='map.center' zoom='map.zoom' draggable="true" events="map.events">
+                    <ui-gmap-marker coords="map.marker.coords" icon="map.marker.icon" idkey="marker-id"></ui-gmap-marker>
+                </ui-gmap-google-map>
+                <input type="text" data-ng-model="data.address" disabled class="form-control" id="restaurantPhone" placeholder="Address" tabindex="5" style="margin-top: 10px;">
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+        <div class="modal-footer">
+            <div style="text-align: center;">
+                <label data-ng-show='errorMessage !== ""'>{{errorMessage}}</label>
+            </div>
+            <div>
+                <button type="button" class="btn btn-red caps element100" data-dismiss="modal" data-ng-click="cancel()" tabindex="17">Cancel</button>
+                <button type="button" class="btn btn-blue caps element100" data-ng-click="saveRestaurant()" tabindex="18">Save</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,114 @@
+<div style="margin-top: 10px;">
+    <div id="adminPage">
+        <div class="row">
+            <div class="col-sm-6">
+                <h2 class="display-1 caps" style="margin-top: 10px; margin-bottom: 20px;">Manage restaurants</h2>
+            </div>
+            <div class="col-sm-6" style="text-align: right;">
+                <button style="margin-top: 10px; width: 200px; background-color: #D95559;" type="button" class="btn btn-blue" data-ng-click="createRestaurant()">CREATE RESTAURANT</button>
+            </div>
+        </div>
+        <div ng-show="restaurants.length === 0">
+            <h3 class="display-1ccaps">You don't have any restaurant</h3>
+        </div>
+        <table class="table table-bordered table-striped" ng-show="restaurants.length !== 0">
+            <thead>
+                <tr>
+                    <td></td>
+                    <td>
+                        <a ng-click="rSortType = 'name'; rSortReverse = !rSortReverse">
+                            Name
+                            <span ng-show="rSortType == 'name' && !rSortReverse" class="fa fa-caret-down"></span>
+                            <span ng-show="rSortType == 'name' && rSortReverse" class="fa fa-caret-up"></span>
+                        </a>
+                    </td>
+                    <td>
+                        <a ng-click="rSortType = 'email'; rSortReverse = !rSortReverse">
+                            Email
+                            <span ng-show="rSortType == 'email' && !rSortReverse" class="fa fa-caret-down"></span>
+                            <span ng-show="rSortType == 'email' && rSortReverse" class="fa fa-caret-up"></span>
+                        </a></td>
+                    <td>
+                        <a ng-click="rSortType = 'type'; rSortReverse = !rSortReverse">
+                            Type
+                            <span ng-show="rSortType == 'type' && !rSortReverse" class="fa fa-caret-down"></span>
+                            <span ng-show="rSortType == 'type' && rSortReverse" class="fa fa-caret-up"></span>
+                        </a>
+                    </td>
+                    <td>
+                        <a ng-click="rSortType = 'phoneNumber'; rSortReverse = !rSortReverse">
+                            Phone Number
+                            <span ng-show="rSortType == 'phoneNumber' && !rSortReverse" class="fa fa-caret-down"></span>
+                            <span ng-show="rSortType == 'phoneNumber' && rSortReverse" class="fa fa-caret-up"></span>
+                        </a>
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="r in restaurants| orderBy:rSortType:rSortReverse" ng-class-even="{selectRowTable : r.id === idSelectedRestaurant}" ng-class-odd="{selectRowTable : r.id === idSelectedRestaurant}">
+                    <td>
+                        <img class="cPointer" src="libs/images/edit.png" alt="Edit Icon" style="width: 20px; height: 20px; margin-left: auto; margin-right: auto; display: block;" data-ng-click="editRestaurantInfo(r)">
+                    </td>
+                    <td class="cPointer" data-ng-click="showRestaurantMenus(r)">{{r.name}}</td>
+                    <td class="cPointer" data-ng-click="showRestaurantMenus(r)">{{r.email}}</td>
+                    <td class="cPointer" data-ng-click="showRestaurantMenus(r)">{{getRestaurantType(r.type)}}</td>
+                    <td class="cPointer" data-ng-click="showRestaurantMenus(r)">{{r.phoneNumber}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div id="restaurantPage">
+        <div style="margin-bottom: 10px; margin-top: 50px;">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h3 class="display-1 caps" style="margin-top: 10px; margin-bottom: 20px;">Manage Menus</h3>
+                </div>
+                <div class="col-sm-6" style="text-align: right;">
+                    <button style="margin-top: 10px; width: 200px; background-color: #D95559;" type="button" class="btn btn-blue" data-ng-disabled="selectedRestaurant === null" data-ng-click="createMenu()">CREATE MENU</button>
+                </div>
+            </div>
+            <div data-ng-show="selectedRestaurant === null">
+                <label>Click in a restaurant to manage their Menus</label>
+            </div>
+        </div>
+        <div ng-show="menus.length !== 0">
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <a ng-click="mSortType = 'name'; mSortReverse = !mSortReverse">
+                                Name
+                                <span ng-show="mSortType == 'name' && !mSortReverse" class="fa fa-caret-down"></span>
+                                <span ng-show="mSortType == 'name' && mSortReverse" class="fa fa-caret-up"></span>
+                            </a>
+                        </td>
+                        <td>
+                            <a ng-click="mSortType = 'price'; mSortReverse = !mSortReverse">
+                                Price
+                                <span ng-show="mSortType == 'price' && !mSortReverse" class="fa fa-caret-down"></span>
+                                <span ng-show="mSortType == 'price' && mSortReverse" class="fa fa-caret-up"></span>
+                            </a>
+                        </td>
+                        <td>Day</td>
+                        <td>Description</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="m in menus| orderBy:mSortType:mSortReverse" >
+                        <td>
+                            <img class="cPointer" src="libs/images/edit.png" alt="Edit Icon" style="width: 20px; height: 20px; margin-left: auto; margin-right: auto; display: block;" data-ng-click="editMenu(m)">
+                        </td>
+                        <td>{{m.name}}</td>
+                        <td>{{m.price}}</td>
+                        <td>{{getMenuDay(m)}}</td>
+                        <td>{{m.description}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div>
+
+    </div>
+</div>

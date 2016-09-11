@@ -1,0 +1,29 @@
+<div class="login-container">
+    <div>
+        <img data-ng-src="libs/images/logo_full_color.png" width=200 height=200>
+    </div>
+    <div id="header">
+        <h3 class="display-1 caps" style="text-align: center;">Log in</h3>
+    </div>
+    <div id="process-login">
+        <div>
+            <input type="text" data-ng-model="credentials.email" placeholder="Email" tabindex="1">
+            <div style="margin-bottom: 10px;"></div>
+            <input type="password" data-ng-model="credentials.password" placeholder="Password" tabindex="2">
+        </div>
+    </div>
+    <div id="form-section">
+        <button data-ng-disabled="credentials.email === '' || credentials.password === ''" type="button" class="btn btn-blue fullWidth" tabindex="3" data-ng-click="processLogin()" style="background-color: #303031; color:#FFF;">LOG IN&nbsp;<img data-ng-if="status.isProcessing" src="libs/images/loading.gif"/></button>
+        <div id="error" data-ng-if="status.error.message !== null">
+            <span>{{status.error.message}}</span>
+        </div>
+        <div id="create-account" style="font-size: 16px;">
+            <div style='margin-top: 10px;'>
+                <label>Don't have an account?</label>
+            </div>
+            <div>
+                <label id="create-account-label" ng-click="createAccount()">Sign up</label>
+            </div>
+        </div>
+    </div>
+</div>

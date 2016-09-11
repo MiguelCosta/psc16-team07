@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html data-ng-app="myMenu">
+    <head>
+        <title>MyMenu Backoffice</title>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- Styles (Bootstrap + additional styling options) -->
+        <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+        <link href="bower_components/bootstrap/dist/css/bootstrap.icon-large.min.css" rel="stylesheet">
+
+        <!-- Fonts (Font Awesome [icons] & Google's Open Sans) -->
+        <link href="libs/fonts/font-awesome/font-awesome.min.css" rel="stylesheet">
+        <link href="//fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet" type="text/css">
+
+        <link href="bower_components/chosen_v1.3.0/chosen.css" rel="stylesheet">
+        <link href="bower_components/jqtree/jqtree.css" rel="stylesheet" type="text/css">
+        <link href="bower_components/ng-grid/ng-grid.css" rel="stylesheet" type="text/css">
+        <!-- Angular Material style sheet -->
+        <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.4/angular-material.min.css">
+
+        <link href="libs/css/CostumizedBootstrap.css" rel="stylesheet">
+        <style>
+            .table-striped > tbody > tr:nth-of-type(odd).selectRowTable {
+                background-color: #d95559;
+                color: white;
+            }
+            .table-striped > tbody > tr:nth-of-type(even).selectRowTable {
+                background-color: #d95559;
+                color: white;
+            }
+        </style>
+    </head>
+    <body style="background-color: #FFFFFF;">
+
+        <div class="container fullHeight">
+            <div data-ng-include="'app/views/other/navbar.html'" style="padding-top: 50px;"></div>
+            <div data-ng-view style="min-width: 950px;"></div>
+        </div>
+
+        <!-- External includes -->
+        <script src="bower_components/jquery/dist/jquery.js"></script>
+        <script src="bower_components/angular/angular.js"></script>
+        <script src="bower_components/json3/lib/json3.js"></script>
+        <script src="bower_components/jquery-ui/jquery-ui.js"></script>
+        <script src="bower_components/angular-route/angular-route.js"></script>
+        <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+        <script src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+        <script src="bower_components/angular-chosen-localytics/chosen.js"></script>
+        <script src="bower_components/ng-grid/ng-grid-2.0.14.debug.js"></script>
+        <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+        <script src="bower_components/angular-ui-sortable/sortable.js"></script>
+        <script src="bower_components/angular-strap/dist/angular-strap.js"></script>
+        <script src="bower_components/chosen_v1.3.0/chosen.jquery.min.js"></script>
+        <script src="bower_components/moment/moment.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular-animate.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular-aria.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular-messages.min.js"></script>
+        <!-- Angular Material Library -->
+        <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.4/angular-material.min.js"></script>
+        <script src="bower_components/angular-google-maps/lodash.js"></script>
+        <script src='//maps.googleapis.com/maps/api/js?sensor=false'></script>
+        <script src="bower_components/angular-google-maps/angular-simple-logger.js"></script>
+        <script src="bower_components/angular-google-maps/angular-google-maps.js"></script>
+
+
+
+
+        <!-- Internal includes -->
+        <script src="app/app.js" charset="utf-8"></script>
+        <script src="app/config.js" charset="utf-8"></script>
+        <script src="app/common.js" charset="utf-8"></script>
+
+        <script src="app/services/session-manager.js" charset="utf-8"></script>
+
+        <script src="app/resources/backoffice.js" charset="utf-8"></script>
+
+        <script src="app/controllers/Login.js" charset="utf-8"></script>
+        <script src="app/controllers/CreateAccount.js" charset="utf-8"></script>
+        <script src="app/controllers/Home.js" charset="utf-8"></script>
+        <script src="app/controllers/RestaurantInfo.js" charset="utf-8"></script>
+        <script src="app/controllers/MenuInfo.js" charset="utf-8"></script>
+        <script src="app/controllers/Account.js" charset="utf-8"></script>
+        <script src="app/controllers/Navbar.js" charset="utf-8"></script>
+
+    </body>
+</html>
